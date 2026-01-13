@@ -1,0 +1,217 @@
+% !TEX program = xelatex % (can also use "lualatex")
+
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usepackage{theme/theme}
+  \setbeamercovered{transparent}
+}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{minted}
+
+% Uncomment me when you need to insert code
+\usepackage{color}
+\usepackage{listings}
+% End Code
+
+% Uncomment me when you need video or sound
+\usepackage{multimedia}
+\usepackage{hyperref}
+% End video
+
+% End Header
+
+% Titlepage
+\title{This is the title of our presentation}
+\subtitle{Sometimes we also need a subtitle}
+\author{Enterprise Software Architectures}
+\institute
+{
+  Bachelor's Degree in Computer Engineering
+}
+\date{Academic course 2025/26}
+% End Titlepage
+
+% Slides
+\begin{document}
+
+% 1. Slide: Titlepage
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% 2. Slide: TOC
+\begin{frame}
+  \frametitle{Table of contents}
+  \tableofcontents[subsectionstyle=hide]
+\end{frame}
+
+% Further Slides
+\section{Titles}
+\begin{frame}
+  \frametitle{Title}
+  Each frame should have a title.
+\end{frame}
+
+\subsection{Subsection no.1.1  }
+\begin{frame}
+  Without title something is missing.
+\end{frame}
+
+\section{Lists}
+\subsection{Lists I}
+\begin{frame}
+  \frametitle{Unnumbered Lists}
+  \begin{itemize}
+    \item Introduction to  \LaTeX
+    \item Second bullet point
+    \item And a third one
+    \item The last one
+  \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Lists with Pause}
+  \begin{itemize}
+    \item Introduction to  \LaTeX \pause
+    \item Second bullet point \pause
+    \item And a third one \pause
+    \item The last one
+  \end{itemize}
+\end{frame}
+
+\subsection{Lists II}
+\begin{frame}
+  \frametitle{Numbered Lists}
+  \begin{enumerate}
+    \item Introduction to  \LaTeX
+    \item Second bullet point
+    \item And a third one
+    \item The last one
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Numbered Lists with Pause}
+  \begin{enumerate}
+    \item Introduction to  \LaTeX \pause
+    \item Second bullet point \pause
+    \item And a third one \pause
+    \item The last one
+  \end{enumerate}
+\end{frame}
+
+\section{Tables}
+\subsection{Tables}
+\begin{frame}
+  \frametitle{Tables}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Title} & \textbf{Title} & \textbf{Title} \\
+    \hline
+    First column & Second column &  \LaTeX  \\
+    \hline
+    Second row & \LaTeX & Last column \\
+    \hline
+  \end{tabular}
+\end{frame}
+
+\section{Blocks \& Math}
+\subsection{Blocks}
+\begin{frame}
+  \frametitle{Blocks}
+
+  \begin{block}{This is a simple block}
+    It should contain some text.
+  \end{block}
+
+  \begin{exampleblock}{Example Block}
+    This may be an example.
+  \end{exampleblock}
+
+  \begin{alertblock}{Warning}
+    The violent color indicates that this block may alert of something.
+  \end{alertblock}
+\end{frame}
+
+\subsection{Math}
+\begin{frame}
+  \frametitle{Math Expressions are a Breeze with \LaTeX \ldots}
+
+  \begin{equation}
+    p(\mathbf{x}_{k}|\mathbf{Z}_{k}) = \frac{p(\mathbf{z}_{k}|\mathbf{x     }_{k})p(\mathbf{x}_{k}|\mathbf{Z}_{k-1})}{\int \! p(\mathbf{z}_{k}|\mathbf{     x}_{k})p(\mathbf{x}_{k}|\mathbf{Z}_{k-1})\,d\mathbf{x}_{k}}
+  \end{equation}
+
+  \begin{equation}
+    w_{k}^{i} \sim w_{k-1}^{i}\frac{p(\mathbf{z}_{k}|\mathbf{x}_{k}^{i})p(\mathbf{x}_{k}^{i}|\mathbf{x}_{k-1}^{i})}{q(\mathbf{x}_{k}^{i}|\mathbf{x}_{k-1}^{i},\mathbf{z}_{k})}
+  \end{equation}
+
+  \ldots and Bayes filtering is great!
+
+\end{frame}
+
+\section{Multimedia}
+\subsection{Split Screen}
+\begin{frame}
+  \frametitle{Splitting Screen}
+  \begin{columns}
+
+    \begin{column}{5cm}
+      \begin{itemize}
+        \item Here
+        \item is some
+        \item text
+      \end{itemize}
+    \end{column}
+
+    \begin{column}{5cm}
+      \begin{tabular}{|c|c|}
+        \hline
+        \textbf{On the} & \textbf{other side} \\
+        \hline
+        there may &  be a table \\
+        \hline
+        or even &  a picture as  \\
+        \hline
+        shown on the &  next frame  \\
+        \hline
+      \end{tabular}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+\subsection{Pictures}
+\begin{frame}
+  \frametitle{Pictures in Latex Beamer Class}
+  \begin{figure}
+    \includegraphics[scale=0.7]{theme/header/campus-igualada.pdf}
+    \caption{This is a picture!}
+  \end{figure}
+\end{frame}
+
+\subsection{Code Listings}
+% The [fragile] is important for listings!
+\begin{frame}[fragile]
+  \frametitle{Code example}
+  \lstset{language=C, basicstyle=\small \ttfamily, showspaces=false, showtabs=false, tab= , keywordstyle=\bfseries, showstringspaces=false, framexleftmargin=5mm, frame=single, numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt, texcl=true}
+   \begin{minted}{c}
+#include <stdio.h>
+
+int main() {
+  printf("Hello World\n");
+  return 0;
+}
+   \end{minted}
+\end{frame}
+
+% End Slides
+
+\end{document}

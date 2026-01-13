@@ -1,0 +1,269 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usetheme{udl}
+  \setbeamercovered{transparent}
+}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{minted}
+
+% Uncomment me when you need to insert code
+\usepackage{color}
+\usepackage{listings}
+% End Code
+
+% Uncomment me when you need video or sound
+\usepackage{multimedia}
+\usepackage{hyperref}
+% End video
+
+% End Header
+
+% Titlepage
+\title{T1. Introduction}
+\author{Enterprise Software Architectures}
+\institute
+{
+  Bachelor's Degree in Computer Engineering
+}
+\date{Academic course 2025/26}
+% End Titlepage
+
+\AtBeginSection[]{
+  \begin{frame}
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\insertsectionhead
+    \end{beamercolorbox}
+  \end{frame}
+}
+
+% Slides
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{T1. Introduction}
+  \tableofcontents[subsectionstyle=show]
+\end{frame}
+
+\section{Block A - Overview of the module}
+\subsection{Lecturers}
+\begin{frame}
+  \frametitle{A - Presentation | Lecturers}
+  \begin{itemize}
+    \item \textbf{Pol Rivero} (pol.rivero@udl.cat)
+      \begin{itemize}
+        \item Main lecturer of this module (theory and laboratories) \vfill
+      \end{itemize}
+    \item With the support of \textbf{Sergio Sayago} (sergio.sayago@udl.cat)
+      \begin{itemize}
+        \item Session 1
+        \item Session 2
+        \item Participation in the presentation of the project I (patterns)
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Dynamics}
+\begin{frame}
+  \frametitle{A - Presentation | Dynamics (I) What will we do?}
+  \begin{itemize}
+    \item \textbf{Highly practical} module
+      \begin{itemize}
+        \item 75\% of the sessions are laboratories
+        \item Java + React + GitHub
+        \item Agile Software Development
+        \item Intro to: Test-Driven Development + Behaviour-Driven Development
+      \end{itemize}
+    \item Project-Based Learning
+      \begin{itemize}
+        \item \textbf{All students} will work on a \textbf{common project} (domain: First Lego League)
+        \item Pol will oversee the project and become a guide on your side
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A - Presentation | Dynamics (II) Language of instruction}
+  \begin{itemize}
+    \item All the \textbf{materials} and \textbf{written communication} will be in \textbf{English}
+      \begin{itemize}
+        \item We will simulate we are working on an international project
+      \end{itemize}
+    \item \textbf{Oral communication} in class with Pol will be in \textbf{Catalan}
+      \begin{itemize}
+        \item In the project, we are one of the partners, which is based in Igualada
+      \end{itemize}
+    \item Sessions \textbf{1} and \textbf{2} will be \textbf{100\% in English​}
+  \end{itemize}
+\end{frame}
+
+\subsection{GenAI}
+\begin{frame}
+  \frametitle{A - Presentation | Generative AI}
+  \begin{itemize}
+    \item You can use it
+    \item Important topics:
+      \begin{itemize}
+        \item Everyone must understand and be able to explain how their code works and what each line does
+        \item \textit{Vibe coding}\footnote{Unlike traditional AI-assisted coding, the human developer avoids examination of the code, accepts AI-suggested completions without human review, and focuses more on iterative experimentation than code correctness or structure (Source: \url{https://en.wikipedia.org/wiki/Vibe_coding})} will \textbf{not} be tolerated
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Assessment}
+\begin{frame}
+  \frametitle{A - Presentation | Assessment - Detailing the Course Guide}
+  \begin{itemize}
+    \item \textbf{Two written exams}
+      \begin{itemize}
+        \item 1st midterm exam = 20\%
+        \item 2nd midterm exam = 20\%
+        \item Written, individual and easy if you follow the module
+      \end{itemize}
+
+    \item \textbf{Project}
+      \begin{itemize}
+        \item 1st deliverable = 20\% \newline (work done: 5\%; project monitoring: 5\%; presentation: 10\%)
+        \item 2nd deliverable = 20\% \newline (work done: 15\%; project monitoring: 5\%)
+        \item 3rd deliverable = 20\% \newline (work done: 15\%; project monitoring: 5\%)
+      \end{itemize}
+
+    \item \textbf{There are no retakes}
+
+  \end{itemize}
+\end{frame}
+
+\section{Block B - Getting Started}
+\subsection{Task 0: Setting up the groups}
+\begin{frame}
+  \frametitle{Block B - Getting started | Task 0: Setting up the groups}
+  You will work in pairs. 20 students / 2 = 10 groups
+
+  \newcounter{group}
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+    \begin{itemize}
+        \setcounter{group}{0}
+        \loop
+        \stepcounter{group}
+      \item \textbf{Group \arabic{group}}
+        \begin{itemize}
+          \item TBC
+        \end{itemize}
+        \ifnum\value{group}<5
+        \repeat
+    \end{itemize}
+
+    \column{0.48\textwidth}
+    \begin{itemize}
+        \setcounter{group}{5}
+        \loop
+        \stepcounter{group}
+      \item \textbf{Group \arabic{group}}
+        \begin{itemize}
+          \item TBC
+        \end{itemize}
+        \ifnum\value{group}<10
+        \repeat
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\subsection{Domain: First Lego League}
+\begin{frame}
+  \frametitle{Block B - Domain | The First Lego League}
+  The domain of the project is the \textbf{First Lego League}
+  \begin{itemize}
+    \item Spanish chapter: \url{https://firstlegoleague.soy}
+    \item International: \url{https://www.firstlegoleague.org}
+    \item Local edition of the FLL: \url{https://www.firstlegoleague.udl.cat}
+  \end{itemize}
+
+  \vfill
+  \begin{itemize}
+    \item Check two documents available at the CV (Resources/Project)
+      \begin{itemize}
+        \item \texttt{APE\_FLL\_overview.PDF}
+        \item \texttt{APE\_FLL\_what\_the\_client\_wants\_more\_or\_less.PDF}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Task 1: Create Logic Model (UML Class Diagram)}
+\begin{frame}
+  \frametitle{Block B - Domain | Task 1: Create the Logic Design of FLL}
+  The logic or conceptual design refers to the database of the system → classes, associations, primary and foreign keys...
+  \vfill
+  Your first task is to create the UML Class Diagram of the FLL as it is described in \texttt{APE\_FLL\_overview.PDF}.
+  \vfill
+  \begin{exampleblock}{Modeling tools}
+    draw.io, Microsoft Visio, Lucid Chart, FigJam…
+  \end{exampleblock}
+\end{frame}
+
+\subsection{Task 2: Create Table of Stakeholders}
+\begin{frame}
+  \frametitle{Block B - Domain | Task 2: Create a table of stakeholders}
+  Prompt:
+  \textit{"Within the context of a software engineering project intended to the design and development of web-based system for the First Lego League, who are or might be regarded as stakeholders?"}
+  \newline
+  Copilot:
+  "(…) Stakeholders include anyone who has an interest in or is affected by the system. Here’s a breakdown of potential stakeholders: students, coaches, mentors, judges, referees (…)"
+
+  \vfill
+  \begin{itemize}
+    \item Complete the following table \textbf{(between 5 and 10 stakeholders)}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Block B - Domain | Task 2: Create a table of stakeholders}
+  \begin{tabular}{|p{0.35\textwidth}|p{0.60\textwidth}|}
+    \hline
+    \textbf{Stakeholders} & \textbf{Overview} \\
+    \hline
+    Name. \newline Primary or secondary? & What is its relationship with the system? \\
+    \hline
+    & \\
+    \hline
+    & \\
+    \hline
+    & \\
+    \hline
+    & \\
+    \hline
+    & \\
+    \hline
+    & \\
+    \hline
+    & \\
+    \hline
+  \end{tabular}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Block B - Domain | Submission}
+  Please submit the UML diagram and table of stakeholders through the CV (look for Activity-1)
+  \begin{itemize}
+    \item ZIP file
+    \item File name: \texttt{Group\_X\_NameStudent1\_NameStudent2.zip}
+  \end{itemize}
+  \vfill
+  This activity will be evaluated by Sergio.
+\end{frame}
+
+\end{document}

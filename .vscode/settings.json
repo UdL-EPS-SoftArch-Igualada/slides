@@ -1,0 +1,13 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.tex",
+                "cmd": "xelatex ${file}"
+            }
+        ]
+    },
+    "explorer.fileNesting.patterns": {
+        "*.tex": "${basename}.log, ${basename}.pdf, ${basename}.out, ${basename}.aux, ${basename}.toc, ${basename}.nav, ${basename}.snm, ${basename}.vrb, ${basename}.fdb_latexmk, ${basename}.fls,  ${basename}.synctex.gz",
+    },
+}

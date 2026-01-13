@@ -1,0 +1,53 @@
+\mode<presentation>
+
+\setbeamercolor{frametitle}{parent=palette primary}
+
+\AtBeginDocument{
+  {
+    \usebeamerfont*{headline}
+
+    \usebeamercolor{normal text}
+    \usebeamercolor{title in head/foot}
+    \usebeamercolor{subsection in head/foot}
+    \usebeamercolor{section in head/foot}
+    \usebeamercolor{frametitle}
+
+    
+    \pgfdeclareverticalshading{beamer@aboveframetitle}{\the\paperwidth}{%
+      color(0ex)=(frametitle.bg);%
+      color(0ex)=(frametitle.bg);%
+      color(0ex)=(subsection in head/foot.bg)
+    }
+
+    \pgfdeclareverticalshading{beamer@belowframetitle}{\the\paperwidth}{%
+      color(0ex)=(normal text.bg);%
+      color(0ex)=(frametitle.bg)
+    }
+  }
+}
+
+\defbeamertemplate*{headline}{udl}
+{%
+% Box on top of each slide
+    \vspace{0.15cm}
+    \begin{tabularx}{\paperwidth}[t]{lXr}
+	\includegraphics[scale=0.2]{./theme/header/UdL-EPS.pdf}
+        & \includegraphics[scale=0.08]{./theme/header/campus-igualada.pdf}
+        & \textcolor{color-udl-purple}{Enterprise Software Architectures}
+    \end{tabularx}
+    \parbox{\paperwidth}{\vspace{0.7mm}%
+\textcolor{beamer@blendedblue}{\line(1,0){364}}}
+  }
+
+\defbeamertemplate*{footline}{udl}
+  {%
+    \hbox{%
+\textcolor{beamer@blendedblue}{\line(1,0){364}}}
+\vspace{2pt}
+    \begin{tabular}[t]{cl}
+            \textcolor{beamer@blendedblue}{\insertframenumber/\inserttotalframenumber \ \ }
+    \end{tabular}  
+  }
+
+\mode
+<all>
