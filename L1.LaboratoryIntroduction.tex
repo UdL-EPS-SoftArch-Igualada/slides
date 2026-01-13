@@ -181,128 +181,40 @@
   \end{figure}
 \end{frame}
 
-\section{Block C - Introduction to REST}
-
-\subsection{What is REST?}
-\begin{frame}
-  \frametitle{What is REST?}
-  \begin{block}{Problem}
-    We need to define an interface between our frontend (web-app running in client devices) and our backend (Java program running in the server).
-  \end{block}
-
-  REST (Representational State Transfer) is an architectural pattern where we map each \textbf{backend resource} to a \textbf{URI}.
-  \newline
-  When the client wants to read or modify information, it performs an HTTP request to the corresponding endpoint.
-
-\end{frame}
-
-\subsection{RESTful API design}
-\begin{frame}
-  \frametitle{RESTful API design: Steps}
-
-  \begin{enumerate}
-      \only<1>{
-      \item Identify which \textbf{resources} should be exposed to the frontend. \newline \textit{Tip:} They usually match the most important classes in your ER model.
-      }
-      \only<2>{
-        \setcounter{enumi}{1}
-      \item Find a good URI for each resource. URIs should read like a filesystem path, with alternating {\color{blue!60!black}collections} and {\color{green!50!black}elements}.
-      }
-      \only<3>{
-        \setcounter{enumi}{2}
-      \item See which \textbf{HTTP metods} make sense for each URI. \newline We will use a simplified version of REST with only 4 verbs:
-      }
-  \end{enumerate}
-
-  \vfill
-
-  \only<1>{
-    \centering
-    \begin{tikzpicture}
-      \umlclass{User}{...}{}
-      \umlclass[x=6,y=0]{Book}{...}{}
-
-      \umlassoc[geometry=-|-, mult1=*, mult2=*, pos2=2.8, name=assoc]{User}{Book}
-      \umlassocclass[x=3,y=-1.5]{FavoriteBook}{assoc-2}{...}{}
-    \end{tikzpicture}
-  }
-  \only<2>{
-    \centering
-    \begin{tabular}{@{}l l@{}}
-      \textbf{URI} & \textbf{Meaning} \\
-      \hline
-      \texttt{/{\color{blue!60!black}books}} & Collection of all books \\
-      \texttt{/{\color{blue!60!black}books}/{\color{green!50!black}187}} & Book with ID = 187 \\
-      \texttt{/{\color{blue!60!black}users}} & Collection of all users \\
-      \texttt{/{\color{blue!60!black}users}/{\color{green!50!black}mike}} & User with username = "mike" \\
-      \texttt{/{\color{blue!60!black}users}/{\color{green!50!black}mike}/{\color{blue!60!black}favoriteBooks}} & List of Mike's favorite books \\
-      \texttt{/{\color{blue!60!black}users}/{\color{green!50!black}mike}/{\color{blue!60!black}favoriteBooks}/{\color{green!50!black}187}} & FavoriteBook association \\
-    \end{tabular}
-  }
-  \only<3>{
-    \begin{itemize}
-      \item {\color{green!60!black}\texttt{GET}}: Read an \textbf{entity}, or list all members of a \textbf{collection}. \newline The GET method is always \textit{safe}, it never modifies data.
-      \item {\color{orange!80!black}\texttt{POST}}: Create a new entity in a \textbf{collection}.
-      \item {\color{blue}\texttt{PUT}}: Modify/update an \textbf{entity}.
-      \item {\color{red}\texttt{DELETE}}: Delete an \textbf{entity}.
-    \end{itemize}
-
-    \begin{exampleblock}{Important}
-      Notice that \texttt{GET} is the only verb that can be used with both collection and entity URIs. \newline Some APIs allow using \texttt{DELETE} on an entire collection, but that is considered dangerous and a bad practice.
-    \end{exampleblock}
-  }
-
-\end{frame}
+\section{Block C - Project structure \& demo}
 
 \begin{frame}
-  \frametitle{RESTful API design: Examples}
+  \frametitle{Project structure}
 
-  List/search books. Filters are sent via \textbf{query parameters}:\newline
-  \texttt{{\color{green!60!black}GET} /books\textbf{?year=2017\&title=Origin}}
-  \newline
-
-  Create a new book. Data is sent via \textbf{HTTP request body}:\newline
-  \texttt{{\color{orange!80!black}POST} /books}\newline
-  \texttt{\{"title": "The Hobbit", "year": "1937", ...\}}
-  \newline
-
-  Update user info. Only \textit{modified} fields are sent via \textbf{body}:\newline
-  \texttt{{\color{blue}PUT} /users/mike}\newline
-  \texttt{\{{"birthday": "2003-04-19"}\}}
-  \newline
-
-  Un-favorite a book:\newline
-  \texttt{{\color{red}DELETE} /users/mike/favoriteBooks/187}\newline
-\end{frame}
-
-\begin{frame}
-  \frametitle{RESTful API design: Additional considerations}
-
+  Configuration files (which you can probably ignore):
   \begin{itemize}
-    \item The request body is always a \textbf{JSON object}, and can only be used in \texttt{PUT} and \texttt{POST} (never in \texttt{GET} or \texttt{DELETE}).
-    \item The response body is always a \textbf{JSON object or array}.
-    \item The HTTP response code can be either:
-      \begin{itemize}
-        \item \textbf{\color{green!60!black}\texttt{200 OK}} for \texttt{GET}, \texttt{PUT} and \texttt{DELETE}. \textbf{\color{green!60!black}\texttt{201 CREATED}} for \texttt{POST}.
-        \item \textbf{\color{orange!80!black}\texttt{4xx}} for client errors (incorrect API usage).
-        \item \textbf{\color{red}\texttt{5xx}} for server errors (unhandled errors in the backend).
-      \end{itemize}
-    \item Not all users can perform all operations! The client must send an \texttt{Authorization} header which the backend validates.
+    \item \texttt{pom.xml}: Maven project configuration and dependencies.
+    \item \texttt{MainApplication.java}: Main application entry point.
+    \item \texttt{config/*}: Sprint components and configuration.
   \end{itemize}
+
 \end{frame}
 
 \begin{frame}
-  \frametitle{RESTful API design: Additional considerations}
+  \frametitle{Project structure}
 
-  \begin{block}{Problem}
-    What if I need to add a functionality that doesn't map well to any resource URI? For example: "Resend the user's verification mail"
-  \end{block}
-
-  In this case, we create a new URI corresponding to a \textbf{verb} (action) instead of a \textbf{noun} (resource).\newline
-  \texttt{{\color{orange!80!black}POST} /users/mike/\textbf{resendVerificationMail}}\newline
-
+  \textbf{Important files for development:}
   \begin{itemize}
-    \item Use \texttt{{\color{orange!80!black}POST}} for non-idempotent actions (such as sending notifications) and \texttt{{\color{blue}PUT}} for idempotent actions (such as subscribing to a topic).
+    \item \texttt{controller/*}: Web layer. This is where REST endpoints are created (one file for each resource group).
+    \item \texttt{domain/*}: Domain layer. This contains a Java implementation of the domain entities (and their corresponding business logic).
+    \item \texttt{repository/*}: Persistence layer. Contains Spring Data interfaces for storing/loading entities from/to the database.
+    \item \texttt{handler/*}: Hooks that perform additional work on certain lifecycle events from the persistence layer.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Project structure}
+
+  \textbf{Important files for testing:}
+  \begin{itemize}
+    \item \texttt{test/resources/features/*}: Cucumber features (BDD).
+    \item \texttt{test/java/.../steps/*}: Java implementation of steps that can be used in the feature files.
   \end{itemize}
 
 \end{frame}
