@@ -110,11 +110,69 @@
       \item Cross-functional and self-organizing.
     \end{itemize}
   \end{itemize}
-
-  \vfill
-
-  \url{https://agilemanifesto.org/}
 \end{frame}
+
+\subsection{Scrum}
+\begin{frame}
+  \frametitle{Scrum Artifacts}
+  \begin{figure}
+    \includegraphics[width=0.9\textwidth]{images/diagrams/Scrum_process.pdf}
+    \caption{Overview of the Scrum process. Source: \href{https://commons.wikimedia.org/wiki/File:Scrum_process.svg}{Wikimedia Commons}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Scrum Events}
+  Every day:
+  \begin{itemize}
+    \item \textbf{Daily stand-up (10-15 minutes):} The Team synchronizes activities, detects short-term impediments, and plans the next 24 hours.
+  \end{itemize}
+  Once per sprint:
+  \begin{itemize}
+    \item \textbf{Sprint review:} The Team (and sometimes the PO) discuss the work completed during the sprint and plan for the next sprint.
+    \item \textbf{Sprint retrospective:} The Team and the Scrum Master reflect on how the sprint went and identify improvements for working more effectively in the next sprint.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Scrum Backlog}  
+  \begin{itemize}
+    \item The backlog is an \textbf{ordered} list of tasks.
+    \begin{itemize}
+      \item Tasks can be \textit{features}, \textit{bugfixes}, \textit{spikes}, etc.
+    \end{itemize}
+    \item Tasks should always include a time estimate.
+    \begin{itemize}
+      \item Time is estimated using an abstract unit called \textit{Story Points}.
+    \end{itemize}
+    \item All tasks are assigned a \textbf{priority}.
+    \begin{itemize}
+      \item This reflects error severity, business value, or other criteria.
+    \end{itemize}
+    \item Tasks are usually grouped in \textit{Epics}.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Scrum Backlog}  
+  \begin{figure}
+    \includegraphics[height=0.7\textheight]{images/jira-backlog.png}
+    \caption{Screenshot of a Scrum Backlog in Jira. Source: \href{https://www.atlassian.com/software/jira/templates/product-backlog-template}{Jira}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Scrum Backlog: Burndown Chart}  
+  \begin{figure}
+    \includegraphics[height=0.7\textheight]{images/burndown-chart.pdf}
+    \caption{Sample Burndown Chart. Source: \href{https://commons.wikimedia.org/wiki/File:SampleBurndownChart.svg}{Wikimedia Commons}}
+  \end{figure}
+\end{frame}
+
+
+\section{Block B - Methodology we will use}
+
 
 
 \section{Block C - Introduction to REST}
@@ -241,19 +299,6 @@
     \item Use \texttt{{\color{orange!80!black}POST}} for non-idempotent actions (such as sending notifications) and \texttt{{\color{blue}PUT}} for idempotent actions (such as subscribing to a topic).
   \end{itemize}
 
-\end{frame}
-
-\section{Work assignment}
-\begin{frame}
-  \frametitle{Work assignment}
-
-  \begin{enumerate}
-    \item Make sure you have completed the "Group creation" test. Wait to get access to the "UdL-EPS-SoftArch-Igualada" GitHub organization.
-    \item Clone the backend (Java) repository. Be careful \textbf{not} to clone the \textit{template} repo.
-    \item Create and push new branch for your changes. You \textbf{do not} need to create a \textit{fork} of the repository.
-    \item Write the basic code for the domain model classes that were assigned to you in class. You \textbf{must} use \href{https://en.wikipedia.org/wiki/Pair_programming}{pair programming}. Use the existing model classes as examples.
-    \item Commit your changes with a descriptive message, and create a Pull Request.
-  \end{enumerate}
 \end{frame}
 
 \end{document}
