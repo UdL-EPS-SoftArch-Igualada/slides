@@ -114,7 +114,7 @@
 
 \subsection{Scrum}
 \begin{frame}
-  \frametitle{Scrum Artifacts}
+  \frametitle{Scrum}
   \begin{figure}
     \includegraphics[width=0.9\textwidth]{images/diagrams/Scrum_process.pdf}
     \caption{Overview of the Scrum process. Source: \href{https://commons.wikimedia.org/wiki/File:Scrum_process.svg}{Wikimedia Commons}}
@@ -170,8 +170,147 @@
   \end{figure}
 \end{frame}
 
+\subsection{Kanban}
+\begin{frame}
+  \frametitle{Kanban}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+    \centering
+    \begin{minipage}[c][.6\textheight][c]{\linewidth}
+      \begin{itemize}
+        \item \textbf{Continuous flow} of tasks, from left to right.
+        \item No explicit roles or sprint retrospectives.
+        \item Focuses on visualizing and \textbf{limiting work in progress}.
+      \end{itemize}
+    \end{minipage}
 
-\section{Block B - Methodology we will use}
+    \column{0.5\textwidth}
+    \centering
+    \begin{figure}
+      \includegraphics[width=1\textwidth]{images/kanban-simple.jpg}
+      \caption{A simple Kanban board. Source: \href{https://commons.wikimedia.org/wiki/File:Simple-kanban-board-.jpg}{Wikimedia Commons}}
+    \end{figure}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Examples of Kanban tools}
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+    \begin{minipage}[c][.6\textheight][c]{\linewidth}
+      \begin{figure}
+        \includegraphics[width=0.9\textwidth]{images/kanban-whiteboard.jpg}
+        \caption{Physical Kanban board. \newline Source: \href{https://www.flickr.com/photos/chrishuffman/2336990347}{Chris Huffman at Flickr (license: CC BY-NC-ND 2.0)}}
+      \end{figure}
+    \end{minipage}
+
+    \column{0.5\textwidth}
+    \begin{minipage}[c][.6\textheight][c]{\linewidth}
+      \begin{figure}
+        \includegraphics[width=0.9\textwidth]{images/trello.png}
+        \caption{Trello board. Source: \href{https://trello.com/use-cases/process-tracking}{Trello}}
+      \end{figure}
+    \end{minipage}
+  \end{columns}
+
+\end{frame}
+
+
+\section{Block B - Agile methodology in our project}
+\begin{frame}
+  \frametitle{Scrumban}
+
+  We will use a hybrid methodology called \textbf{Scrumban}\footnote{https://www.atlassian.com/agile/project-management/scrumban}, which combines elements of Scrum and Kanban:
+
+  \begin{itemize}
+    \item Scrum \textbf{fixed-length sprints} for planning and delivery.
+    \item Scrum \textbf{sprint review} and \textbf{sprint retrospective}.
+    \item \textbf{Kanban board} for visualizing and limiting work in progress.
+    \item The Scrum \textbf{backlog} is sorted by priority and used to feed the Kanban stream of tasks.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Task states}
+
+  \begin{itemize}
+    \item \textbf{Inbox}: Proposed tasks that have not yet been accepted.
+    \item \textbf{Backlog}: Accepted tasks that can be picked up by anyone.
+    \item \textbf{In progress}: Tasks that are assigned to a group and currently being worked on.
+    \item \textbf{In review}: Tasks with a created pull request, pending to be reviewed and merged.
+    \item \textbf{Done}: Completed tasks with a merged pull request.
+  \end{itemize}
+
+  \begin{exampleblock}{Important}
+    Each team can have at most \textbf{3 tasks} in progress at any given time.
+  \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Proposing a task}
+
+  \begin{itemize}
+    \item Anyone can (and must) create tasks (GitHub issues).
+    \item \textbf{All} tasks must move the project forward toward the PM's vision. If you are unsure about some details, ask for clarification before creating the task.
+    \item The task submitter will earn \textbf{0.25 points} once anyone completes the task. \newline If a student consistently submits high quality, well-specified tasks, they may earn up to \textbf{1 point per task}.
+  \end{itemize}
+  
+  \begin{alertblock}{Warning}
+    Non-sensical, AI-generated or spammy tasks will incur a penalty of several points.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Implementing the task}
+
+  \begin{enumerate}
+    \item \textbf{Decide on a task} from the backlog that you would like to implement.
+    \begin{itemize}
+      \item \textit{Tip:} You can filter the issues list by the \texttt{backlog} label.
+    \end{itemize}
+    \item \textbf{Self-assign the task} by creating a comment with only the word: \texttt{request}.
+    \item Create a branch and complete the task (implement new feature, fix bug, etc.).
+    \begin{itemize}
+      \item \textit{Tip:} Don't forget to write the corresponding tests.
+    \end{itemize}
+    \item \textbf{Create a Pull Request} against the \texttt{main} branch.
+    \item Wait for the PR to be reviewed. You may need to make changes before it's accepted.
+    \item \textbf{Earn points} (see the next slide).
+  \end{enumerate}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Implementing the task: Earning points}
+
+  Once the PR is accepted, you will earn an amount of points roughly \textbf{equivalent to the task's story points estimation}.
+
+  \begin{block}{Caveat 1}
+    If you are the same group that submitted the task, you only get \textbf{half the points}.
+  \end{block}
+
+  \begin{block}{Caveat 2}
+    At the end of the course, I'll calibrate the story points and \textbf{penalize} groups that were "too generous" with their estimations.
+  \end{block}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example}
+
+  There are 2 groups: Alice+Albert and Bob+Barbara.
+  \begin{enumerate}
+    \item Alice submits a feature task with an estimation of 2 story points.
+    \item I review and approve the task, it is moved to the backlog.
+    \item Bob self-assigns the task, implements it and creates a PR.
+    \item I review and accept Bob's PR.
+  \end{enumerate}
+  At this point, Alice and Albert earn 0.25 points and Bob and Barbara earn 2 points.
+
+\end{frame}
 
 
 
