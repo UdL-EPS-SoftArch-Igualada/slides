@@ -316,7 +316,6 @@
 
 \section{Block C - Introduction to REST}
 
-\subsection{What is REST?}
 \begin{frame}
   \frametitle{What is REST?}
   \begin{block}{Problem}
@@ -343,7 +342,7 @@
       }
       \only<3>{
         \setcounter{enumi}{2}
-      \item See which \textbf{HTTP metods} make sense for each URI. \newline We will use a simplified version of REST with only 4 verbs:
+      \item See which \textbf{HTTP metods} make sense for each URI.
       }
   \end{enumerate}
 
@@ -376,12 +375,13 @@
     \begin{itemize}
       \item {\color{green!60!black}\texttt{GET}}: Read an \textbf{entity}, or list all members of a \textbf{collection}. \newline The GET method is always \textit{safe}, it never modifies data.
       \item {\color{orange!80!black}\texttt{POST}}: Create a new entity in a \textbf{collection}.
-      \item {\color{blue}\texttt{PUT}}: Modify/update an \textbf{entity}.
+      \item {\color{blue}\texttt{PUT}}: Update an \textbf{entity}. Unspecified fields are \textit{cleared}.
+      \item {\color{blue}\texttt{PATCH}}: Update an \textbf{entity}. Unspecified fields are \textit{unchanged}.
       \item {\color{red}\texttt{DELETE}}: Delete an \textbf{entity}.
     \end{itemize}
 
     \begin{exampleblock}{Important}
-      Notice that \texttt{GET} is the only verb that can be used with both collection and entity URIs. \newline Some APIs allow using \texttt{DELETE} on an entire collection, but that is considered dangerous and a bad practice.
+      Notice that \texttt{GET} is the only verb that can be used with both collection and entity URIs.
     \end{exampleblock}
   }
 
@@ -400,7 +400,7 @@
   \newline
 
   Update user info. Only \textit{modified} fields are sent via \textbf{body}:\newline
-  \texttt{{\color{blue}PUT} /users/mike}\newline
+  \texttt{{\color{blue}PATCH} /users/mike}\newline
   \texttt{\{{"birthday": "2003-04-19"}\}}
   \newline
 
@@ -412,11 +412,11 @@
   \frametitle{RESTful API design: Additional considerations}
 
   \begin{itemize}
-    \item The request body is always a \textbf{JSON object}, and can only be used in \texttt{PUT} and \texttt{POST} (never in \texttt{GET} or \texttt{DELETE}).
+    \item The request body is always a \textbf{JSON object}, and can only be used in \texttt{POST}, \texttt{PUT}, and \texttt{PATCH} (never in \texttt{GET} or \texttt{DELETE}).
     \item The response body is always a \textbf{JSON object or array}.
     \item The HTTP response code can be either:
       \begin{itemize}
-        \item \textbf{\color{green!60!black}\texttt{200 OK}} for \texttt{GET}, \texttt{PUT} and \texttt{DELETE}. \textbf{\color{green!60!black}\texttt{201 CREATED}} for \texttt{POST}.
+        \item \textbf{\color{green!60!black}\texttt{201 CREATED}} for \texttt{POST}, \textbf{\color{green!60!black}\texttt{200 OK}} for all other verbs.
         \item \textbf{\color{orange!80!black}\texttt{4xx}} for client errors (incorrect API usage).
         \item \textbf{\color{red}\texttt{5xx}} for server errors (unhandled errors in the backend).
       \end{itemize}
@@ -435,9 +435,136 @@
   \texttt{{\color{orange!80!black}POST} /users/mike/\textbf{resendVerificationMail}}\newline
 
   \begin{itemize}
-    \item Use \texttt{{\color{orange!80!black}POST}} for non-idempotent actions (such as sending notifications) and \texttt{{\color{blue}PUT}} for idempotent actions (such as subscribing to a topic).
+    \item Use \texttt{{\color{orange!80!black}POST}} for non-idempotent actions (such as sending a notification) and \texttt{{\color{blue}PUT}} for idempotent actions (such as following a user)\footnote{\url{https://en.wikipedia.org/wiki/Idempotence}}.
   \end{itemize}
 
 \end{frame}
+
+\section{Block D - REST APIs in Spring Boot}
+\begin{frame}
+  \frametitle{The traditional way to do it}
+
+   The \textbf{FooService} obtains the \textbf{Foo} model using the \textbf{FooRepository} and uses it to perform validation and other business logic before returning a result.
+
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{images/diagrams/controller-service-repository.pdf}
+    \caption{Controller-Service-Repository pattern}
+  \end{figure}
+
+  This works well for large applications with complex business logic.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Spring Data REST}
+
+   The Spring Data REST framework \textbf{inspects} our model and repository classes to \textbf{generate all REST endpoints} automatically.
+
+  \begin{figure}
+    \includegraphics[width=0.77\textwidth]{images/diagrams/spring-data-rest.pdf}
+    \caption{Spring Data REST architecture}
+  \end{figure}
+
+  This works well for simple CRUD applications (like ours).
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Spring Data REST Demo - Model}
+
+  \begin{minted}{java}
+@Entity
+@Data
+public class Record extends UriEntity<Long> {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  // ...
+
+  @ManyToOne
+  @JsonIdentityReference(alwaysAsId = true)
+  private User owner;
+}
+  \end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Spring Data REST Demo - Repository}
+
+  \begin{minted}{java}
+@RepositoryRestResource
+public interface RecordRepository extends
+    CrudRepository<Record, Long>,
+    PagingAndSortingRepository<Record, Long> {
+
+  @Operation(summary = "Find records by owner")
+  List<Record> findByOwner(@Param("user") User owner);
+}
+  \end{minted}
+
+  \begin{block}{Note}
+    This is not pseudocode, you \textit{really} just need to define an interface.
+  \end{block}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Spring Data REST Demo - Result}
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+    \centering
+    \begin{figure}
+      \includegraphics[height=0.82\textheight]{images/generated-records-endpoints.png}
+    \end{figure}
+
+    \column{0.5\textwidth}
+    \centering
+    \begin{figure}
+      \includegraphics[height=0.82\textheight]{images/generated-records-endpoint-put.png}
+    \end{figure}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{But wait, what about security?!}
+
+  By default, Spring Data REST gives \textbf{any caller} unchecked CRUD\footnote{Create, Read, Update and Delete} capabilities. Most of the time, this is \textbf{not} what we want!
+  \newline \newline
+  We must use the following security measures:
+  \begin{itemize}
+    \item \textbf{Spring Security Filters:} Restrict which endpoints a user is allowed to call, based on simple criteria.
+    \begin{itemize}
+      \item Logged-in or anonymous, regular user or admin, etc.
+    \end{itemize}
+    \item \textbf{Event Handlers:} Arbitrary code that runs on specific events. Validate business logic and throw an exception if needed.
+    \begin{itemize}
+      \item Events: \texttt{BeforeCreate}, \texttt{BeforeSave}, \texttt{BeforeDelete}...
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\section{Work assignment}
+\begin{frame}
+  \frametitle{Work assignment}
+
+  \begin{enumerate}
+    \item Write a simple \textbf{Repository} class for the same domain models you created last week.
+    \begin{itemize}
+      \item You may need to update your model to add the required persistence annotations.
+    \end{itemize}
+    \item Use \textbf{Cucumber} to test the generated REST endpoints.
+    \begin{itemize}
+      \item You don't need to implement or test any business logic, just check that the basic CRUD operations work as expected.
+      \item See the \href{https://github.com/UdL-EPS-SoftArch-Igualada/spring-template/blob/main/src/test/resources/features/ManageRecord.feature}{template repository} for examples.
+    \end{itemize}
+    \item Commit your changes with a descriptive message, and create a Pull Request.
+  \end{enumerate}
+\end{frame}
+
 
 \end{document}

@@ -6,6 +6,7 @@
 *.nav
 *.out
 *.pdf
+!images/**/*.pdf
 *.fdb_latexmk
 *.fls
 *.gz
