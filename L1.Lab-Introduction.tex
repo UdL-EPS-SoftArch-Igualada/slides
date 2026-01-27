@@ -21,15 +21,11 @@
 \usepackage{listings}
 % End Code
 
-% Uncomment me when you need video or sound
-\usepackage{multimedia}
-\usepackage{hyperref}
-% End video
-
 % End Header
 
 % Titlepage
-\title{L1. Lab Introduction}
+\newcommand{\maintitle}{L1. Lab Introduction}
+\title{\maintitle}
 \author{Enterprise Software Architectures}
 \institute
 {
@@ -55,7 +51,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{L1. Lab Introduction}
+  \frametitle{\maintitle}
   \tableofcontents[subsectionstyle=show]
 \end{frame}
 
@@ -85,7 +81,7 @@
 
       \vfill
 
-    \item \textbf{Hamilton} and her \textbf{MIT team} developed the on-board flight software for NASA's Apollo Guidance Computer. It was the \textbf{most complex} and \textbf{safest} software ever written at the time.
+    \item \textbf{Hamilton} and her \textbf{MIT team} developed the on-board flight software for NASA's Apollo Guidance Computer. It was the \textbf{most complex} and \textbf{safest} software ever written at the time.\footnote{Fun fact: the full source code is publicly available on GitHub: \url{https://github.com/chrislgarry/Apollo-11}}
   \end{itemize}
 
 \end{frame}
@@ -94,7 +90,8 @@
   \frametitle{What is Enterprise Software?}
 
   You are not Ada Lovelace, you are Margaret Hamilton.
-  \vfill
+  \newline
+
   \begin{itemize}
     \item Software Engineers work in \textbf{teams} to solve \textbf{complex problems} with \textbf{real stakes} (potentially human lives).
     \item Complex software problems require different \textbf{architecture patterns} and \textbf{development strategies} compared to simple software.
@@ -105,7 +102,7 @@
 \begin{frame}
   \frametitle{Software Engineers are Engineers}
 
-  \begin{columns}[T,onlytextwidth]
+  \begin{columns}
     \column{0.7\textwidth}
     Engineers...
     \begin{itemize}
@@ -200,8 +197,8 @@
 
   \textbf{Important files for development:}
   \begin{itemize}
-    \item \texttt{controller/*}: Web layer. This is where REST endpoints are created (one file for each resource group).
-    \item \texttt{domain/*}: Domain layer. This contains a Java implementation of the domain entities (and their corresponding business logic).
+    \item \texttt{controller/*}: Web layer. This is where REST endpoints can be manually created.
+    \item \texttt{domain/*}: \textbf{Domain layer.} This contains a Java implementation of the domain entities (and their corresponding business logic).
     \item \texttt{repository/*}: Persistence layer. Contains Spring Data interfaces for storing/loading entities from/to the database.
     \item \texttt{handler/*}: Hooks that perform additional work on certain lifecycle events from the persistence layer.
   \end{itemize}
@@ -216,6 +213,75 @@
     \item \texttt{test/resources/features/*}: Cucumber features (BDD).
     \item \texttt{test/java/.../steps/*}: Java implementation of steps that can be used in the feature files.
   \end{itemize}
+  You don't need to worry about them until next week.
+
+\end{frame}
+
+\section{A word from our sponsor}
+\begin{frame}
+  \frametitle{... a sponsor?!}
+  
+
+  \begin{columns}
+    \column{0.6\textwidth}
+    Our application will be deployed in a \textbf{real production environment}.
+
+    My employer has agreed to generously cover the full cost of our backend server and domain name.
+    \newline
+
+    \begin{block}{About our server}
+      The server is located in Nuremberg, Germany. It has 4 CPU cores, 8 GB of RAM and 80 GB of SSD storage.
+    \end{block}
+
+    \column{0.4\textwidth}
+    \begin{figure}
+      \includegraphics[width=1\textwidth]{images/L1/server.jpg}
+      \caption{A server room. Source: \href{https://commons.wikimedia.org/wiki/File:CERN_Server.jpg}{Wikimedia Commons}}
+    \end{figure}
+
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is LogiCommerce?}
+
+  \begin{figure}
+    \includegraphics[height=0.6\textheight]{images/L1/logicommerce.png}
+  \end{figure}
+  \begin{columns}
+    \column{0.15\textwidth}
+        \href{https://www.munichsports.com/}{\includegraphics[width=1\textwidth]{images/L1/munich.png}}
+    \column{0.15\textwidth}
+        \href{https://www.vicens.com/}{\includegraphics[width=1\textwidth]{images/L1/torrons-vicens.png}}
+    \column{0.15\textwidth}
+        \href{https://www.tresgriferia.com/}{\includegraphics[width=1\textwidth]{images/L1/tres-griferia.png}}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Our tech stack}
+
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item Java (Jakarta EE)
+        \item MySQL, MongoDB, Redis
+        \item Amazon Web Services
+        \item PHP
+        \item Lucee / ColdFusion
+        \item Python
+        \item React + TypeScript
+      \end{itemize}
+
+    \column{0.5\textwidth}
+      \begin{figure}
+        \includegraphics[width=1\textwidth]{images/L1/code.jpg}
+        \caption{Source: \href{https://www.pexels.com/photo/close-up-photo-of-programming-of-codes-546819}{Luis Gomes at Pexels (license: Public Domain)}}
+      \end{figure}
+    
+  \end{columns}
 
 \end{frame}
 
@@ -226,8 +292,7 @@
   \begin{enumerate}
     \item Make sure you have completed the "Group creation" test. Wait to get access to the "UdL-EPS-SoftArch-Igualada" GitHub organization.
     \item \textbf{Fork} the backend (Java) repository. Be careful \textbf{not} to fork the \textit{template} repo.
-    \item Write the basic code for the domain model classes that were assigned to you in class. You \textbf{must} use \href{https://en.wikipedia.org/wiki/Pair_programming}{pair programming}. Use the existing model classes as examples.
-    \item Commit your changes with a descriptive message, and create a Pull Request against the upstream repository.
+    \item Have a look around the repo.
   \end{enumerate}
 \end{frame}
 

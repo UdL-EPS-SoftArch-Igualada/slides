@@ -21,15 +21,11 @@
 \usepackage{listings}
 % End Code
 
-% Uncomment me when you need video or sound
-\usepackage{multimedia}
-\usepackage{hyperref}
-% End video
-
 % End Header
 
 % Titlepage
-\title{L2. Methodology}
+\newcommand{\maintitle}{L2. Methodology}
+\title{\maintitle}
 \author{Enterprise Software Architectures}
 \institute
 {
@@ -55,7 +51,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{L2. Methodology}
+  \frametitle{\maintitle}
   \tableofcontents[subsectionstyle=show]
 \end{frame}
 
@@ -173,16 +169,14 @@
 \subsection{Kanban}
 \begin{frame}
   \frametitle{Kanban}
-  \begin{columns}[T,onlytextwidth]
+  \begin{columns}
     \column{0.5\textwidth}
     \centering
-    \begin{minipage}[c][.6\textheight][c]{\linewidth}
-      \begin{itemize}
-        \item \textbf{Continuous flow} of tasks, from left to right.
-        \item No explicit roles or sprint retrospectives.
-        \item Focuses on visualizing and \textbf{limiting work in progress}.
-      \end{itemize}
-    \end{minipage}
+    \begin{itemize}
+      \item \textbf{Continuous flow} of tasks, from left to right.
+      \item No explicit roles or sprint retrospectives.
+      \item Focuses on visualizing and \textbf{limiting work in progress}.
+    \end{itemize}
 
     \column{0.5\textwidth}
     \centering
@@ -196,22 +190,18 @@
 \begin{frame}
   \frametitle{Examples of Kanban tools}
 
-  \begin{columns}[T,onlytextwidth]
+  \begin{columns}
     \column{0.5\textwidth}
-    \begin{minipage}[c][.6\textheight][c]{\linewidth}
-      \begin{figure}
-        \includegraphics[width=0.9\textwidth]{images/L2/kanban-whiteboard.jpg}
-        \caption{Physical Kanban board. \newline Source: \href{https://www.flickr.com/photos/chrishuffman/2336990347}{Chris Huffman at Flickr (license: CC BY-NC-ND 2.0)}}
-      \end{figure}
-    \end{minipage}
+    \begin{figure}
+      \includegraphics[width=0.9\textwidth]{images/L2/kanban-whiteboard.jpg}
+      \caption{Physical Kanban board. \newline Source: \href{https://www.flickr.com/photos/chrishuffman/2336990347}{Chris Huffman at Flickr (license: CC BY-NC-ND 2.0)}}
+    \end{figure}
 
     \column{0.5\textwidth}
-    \begin{minipage}[c][.6\textheight][c]{\linewidth}
-      \begin{figure}
-        \includegraphics[width=0.9\textwidth]{images/L2/trello.png}
-        \caption{Trello board. Source: \href{https://trello.com/use-cases/process-tracking}{Trello}}
-      \end{figure}
-    \end{minipage}
+    \begin{figure}
+      \includegraphics[width=0.9\textwidth]{images/L2/trello.png}
+      \caption{Trello board. Source: \href{https://trello.com/use-cases/process-tracking}{Trello}}
+    \end{figure}
   \end{columns}
 
 \end{frame}
@@ -513,7 +503,7 @@ public interface RecordRepository extends
 \begin{frame}
   \frametitle{Spring Data REST Demo - Result}
 
-  \begin{columns}[T,onlytextwidth]
+  \begin{columns}
     \column{0.5\textwidth}
     \centering
     \begin{figure}
@@ -563,16 +553,18 @@ public interface RecordRepository extends
   \frametitle{Work assignment}
 
   \begin{enumerate}
-    \item Write a simple \textbf{Repository} class for the same domain models you created last week.
+    \item Self-assign the task corresponding to the model classes that were assigned to you in class.
+    \item Write the \textbf{model} class and a simple \textbf{Repository} class for each of them. You \textbf{must} use \href{https://en.wikipedia.org/wiki/Pair_programming}{pair programming}.
     \begin{itemize}
-      \item You may need to update your model to add the required persistence annotations.
+      \item Use the existing model classes as examples.
+      \item You will need to add persistence annotations to your model classes so that they can be persisted to the database.
     \end{itemize}
     \item Use \textbf{Cucumber} to test the generated REST endpoints.
     \begin{itemize}
       \item You don't need to implement or test any business logic, just check that the basic CRUD operations work as expected.
-      \item See the \href{https://github.com/UdL-EPS-SoftArch-Igualada/spring-template/blob/main/src/test/resources/features/ManageRecord.feature}{template repository} for examples.
+      \item See the template repository for examples. \href{https://github.com/UdL-EPS-SoftArch-Igualada/spring-template/blob/main/src/test/resources/features/ManageRecord.feature}{[link]}
     \end{itemize}
-    \item Commit your changes with a descriptive message, and create a Pull Request.
+    \item Commit your changes with a descriptive message, and create a Pull Request against the upstream repository.
   \end{enumerate}
 \end{frame}
 

@@ -1,7 +1,7 @@
 \documentclass{beamer}
 \mode<presentation>
 {
-  \usetheme{udl}
+  \usepackage{theme/theme}
   \setbeamercovered{transparent}
 }
 
@@ -20,15 +20,11 @@
 \usepackage{listings}
 % End Code
 
-% Uncomment me when you need video or sound
-\usepackage{multimedia}
-\usepackage{hyperref}
-% End video
-
 % End Header
 
 % Titlepage
-\title{T1. Introduction}
+\newcommand{\maintitle}{T1. Introduction}
+\title{\maintitle}
 \author{Enterprise Software Architectures}
 \institute
 {
@@ -54,7 +50,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{T1. Introduction}
+  \frametitle{\maintitle}
   \tableofcontents[subsectionstyle=show]
 \end{frame}
 

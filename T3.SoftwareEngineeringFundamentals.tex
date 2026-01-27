@@ -1,0 +1,459 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usepackage{theme/theme}
+  \setbeamercovered{transparent}
+}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{minted}
+
+% Uncomment me when you need to insert code
+\usepackage{color}
+\usepackage{listings}
+% End Code
+
+% End Header
+
+% Titlepage
+\newcommand{\maintitle}{T3. Software Engineering Fundamentals}
+\title{\maintitle}
+\author{Enterprise Software Architectures}
+\institute
+{
+  Bachelor's Degree in Computer Engineering
+}
+\date{Academic course 2025/26}
+% End Titlepage
+
+\AtBeginSection[]{
+  \begin{frame}
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\insertsectionhead
+    \end{beamercolorbox}
+  \end{frame}
+}
+
+% Slides
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{\maintitle}
+  \tableofcontents[subsectionstyle=show]
+\end{frame}
+
+\section{Block A - Re-discovering Software Engineering}
+\begin{frame}
+  \frametitle{Our goals}
+  
+  We will be deriving some of Software Engineering's first principles using a method used in mathematics and philosophy.
+
+  \begin{itemize}
+    \item \textbf{Axiom}: A statement that is taken to be true, serving as a premise or starting point for further reasoning and arguments.
+    \item \textbf{Theorem}: A statement that has been proven to be true based on axioms and previously established theorems.
+    \item \textbf{Corollary}: A theorem that follows directly in an obvious way from a previously proven theorem.
+  \end{itemize}
+
+  I promise it's not as scary as it sounds!
+\end{frame}
+
+\begin{frame}
+
+  \begin{block}{Axiom A1: Change is inevitable}
+    Over a system's lifetime, \textbf{non-trivial change requests} (new features, behavior changes...) will occur. \newline The success of the development team and the company depends on delivering on these requests \textbf{quickly and without errors}.
+  \end{block}
+
+  \begin{block}{Axiom A2: Labor Cost}
+    The cost (time and money) of a change roughly proportional to the amount of code added and modified. This includes writing the new code, testing, debugging, etc.
+  \end{block}
+
+\end{frame}
+
+\begin{frame}
+
+  \begin{exampleblock}{A1 $\land$ A2 $\implies$ Theorem: Locality of changes}
+    A good design \textbf{minimizes the number of modules} (classes, packages, etc.) that need to be modified for a change.
+  \end{exampleblock}
+
+  If this is not followed... \textbf{Code smell: Shotgun Surgery}
+
+  \begin{figure}
+    \includegraphics[height=0.4\textheight]{images/T3/shotgun-surgery.png}
+    \caption{A shotgun leaves many small holes. Source: \href{https://refactoring.guru/smells/shotgun-surgery}{Refactoring Guru}}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Axiom A3: Humans are bad at managing complexity}
+    The human brain has a limited capacity for understanding and managing \textbf{complexity}. \newline Complexity is \textbf{reduced through abstraction}.
+  \end{block}
+
+  \vfill
+  Don't believe me? Time for an experiment.
+
+  Prepare a sheet of paper. You have \textbf{5 seconds} to memorize and then reproduce the following image.
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \includegraphics[scale=0.7]{images/T3/house-decomposed.pdf}
+    \caption{Source: \href{https://codigus.dev/cursos/curso-ingenieria-sw/material/1-fundamentos/3-complejidad/}{Universo Santa Tecla | Universidad Politécnica de Madrid}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \centering
+  \vfill
+  \textbf{Time's up!}
+
+  Now reproduce the image.
+
+  \vfill
+  Prepare another sheet of paper, you will have 5 seconds to memorize another image.
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \includegraphics[scale=0.7]{images/T3/house-composed.pdf}
+    \caption{Source: \href{https://codigus.dev/cursos/curso-ingenieria-sw/material/1-fundamentos/3-complejidad/}{Universo Santa Tecla | Universidad Politécnica de Madrid}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \centering
+  \vfill
+  \textbf{Time's up!}
+
+  Now reproduce the second image.
+
+  \vfill
+  As you can see, by grouping elements into a \textbf{higher order entity} (an abstraction), the required cognitive effort to understand the system is greatly reduced.
+\end{frame}
+
+\begin{frame}
+  \begin{exampleblock}{A3 $\implies$ Theorem: Classes and methods must be small}
+    If a class or method has grown larger over time, it should be broken up. Delegate implementation details to smaller, more manageable units.
+  \end{exampleblock}
+
+  Static analyzers such as SonarQube can be used to enforce size metrics. Some common values include:
+
+  \begin{itemize}
+    \item Methods: 10-30 lines of code, cyclomatic complexity $\le$ 10, number of arguments $\le$ 3
+    \item Classes: 100-300 lines of code
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{My personal recommendation}
+  Instead of worrying about lines of code, focus on having:
+  \begin{itemize}
+    \item Extremely readable methods. They should read as close to english as possible. Their implementation must be \textbf{obvious}.
+    \item Hard limit: at most \textbf{2 levels of nesting} per method (for+for, for+if, while+if, etc.).
+  \end{itemize}
+
+  \vfill
+  \begin{minted}{java}
+public Session authenticateSessionUser(String token) {
+  User user = getSessionUser(token);
+  if (!user.isAuthenticated() || user.isBanned()) {
+    throw new UnauthenticatedUserException();
+  }
+  return getFullSessionFor(user);
+}
+  \end{minted}
+\end{frame}
+
+\subsection{Single Responsibility Principle (SRP)}
+\begin{frame}
+  \begin{exampleblock}{A1 $\land$ A3 $\implies$ Theorem: Modules should have high cohesion}
+    A module's internal elements must be strongly related and focused on a single responsibility. \newline This reduces the cognitive load required to understand the module.
+  \end{exampleblock}
+
+  From this, we get the famous:
+  
+  \begin{exampleblock}{Corollary: \textbf{Single Responsibility Principle (SRP)}}
+    A class should have only one reason to change.
+  \end{exampleblock}
+  That's the \textbf{S} in the \textbf{S}OLID principles. 
+\end{frame}
+
+\begin{frame}
+  \begin{exampleblock}{A1 $\land$ A3 $\implies$ Theorem: Modules should have loose coupling}
+    The more dependencies a module has, the harder it is to understand, and the easier it is to break when making a change.
+  \end{exampleblock}
+  \begin{figure}
+    \begin{columns}
+      \column{.6\linewidth}
+        \centering
+        \includegraphics[height=0.55\textheight]{images/T3/CouplingVsCohesion.pdf}
+      \column{.5\linewidth}
+        \caption{Cohesion vs Coupling. \newline Source: \href{https://commons.wikimedia.org/wiki/File:CouplingVsCohesion.svg}{Wikimedia Commons}}
+    \end{columns}
+  \end{figure}
+\end{frame}
+
+\subsection{Law of Demater (LoD)}
+\begin{frame}[fragile]
+
+  \begin{exampleblock}{Corollary: \textbf{Law of Demeter (LoD)}}
+    Also known as the "Principle of least knowledge" or "Don't talk to strangers". A class should \textit{only} invoke methods of their direct collaborators.
+  \end{exampleblock}
+
+  \vfill
+  If this is not followed... \textbf{Code smell: Message Chains}
+  \begin{minted}{java}
+myHuman.getMuscleSystem().getArms()[0].getHand()
+            .typeMessage("Hello, world!");
+  \end{minted}
+  This code is susceptible to a very nasty family of bugs called \textbf{\href{https://en.wikipedia.org/wiki/Action_at_a_distance_(computer_programming)}{Action at a distance}}.
+
+\end{frame}
+
+\subsection{Interface Segregation Principle (ISP)}
+\begin{frame}
+  \begin{exampleblock}{Corollary: \textbf{Interface Segregation Principle (ISP)}}
+    The interfaces should be consumer-shaped (also known as \textit{role interfaces}). Do not increase coupling without reason.
+  \end{exampleblock}
+
+  \begin{figure}
+    \includegraphics[width=1\linewidth]{images/T3/interface-segregation.pdf}
+  \end{figure}
+
+  That's the \textbf{I} in the SOL\textbf{I}D principles. 
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Today's most important takeaway}
+  \begin{block}{Axiom A4: Humans make mistakes}
+    Programmers won't always be in an optimal mental state.
+  \end{block}
+
+  \begin{itemize}
+    \item \textbf{Everyone} is prone to errors, even the most senior engineers.
+    \item When stressed or on a tight deadline, everyone follows the \textbf{path of least resistance}.
+  \end{itemize}
+
+  One way to mitigate this is through practices such as \textbf{Pair programming} and \textbf{Code review}.
+  
+  However, these can have significant overhead.
+\end{frame}
+
+\begin{frame}
+
+  \begin{exampleblock}{A4 $\implies$ Theorem: Errors should be caught at compile time}
+    A good design pushes as many errors as possible to compile time.
+  \end{exampleblock}
+
+  When possible, large projects should:
+
+  \begin{itemize}
+    \item Use a statically typed language like Java, C\# or TypeScript.
+    \item Make use of modern language features such as null-awareness and exhaustive pattern matching.
+    \item Apply design patterns that help make illegal states unrepresentable in code.
+  \end{itemize}
+
+  If making a change requires you to follow a checklist, you are doing it wrong! \textbf{The compiler error list should be your checklist.}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{What about Large Language Models?}
+  Some people believe LLMs will become the new compiler and we will be writing programs in natural language.
+
+  I don't think this will \textit{ever} happen.
+  
+  \begin{itemize}
+    \item LLMs are \textbf{probabilistic predictors}.
+    \begin{itemize}
+      \item Feeding them the appropriate context does help, but they still can (and often do) make mistakes.
+    \end{itemize}
+    \item Compilers are \textbf{deterministic}, and perform a \textbf{full formal proof} of the correctness of their input.
+  \end{itemize}
+
+  In that regard, LLMs are closer to being a human than a compiler, and they should always be supervised as such.\footnote{That doesn't mean that LLM tools are not useful! They can greatly speed up implementation if used correctly.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Let's return to \textit{Abstraction}}
+  
+  Until now, we have established that:
+  \begin{itemize}
+    \item Humans can't handle complexity well, and the way of reducing it is through abstraction.
+    \item Humans follow the path of least resistance.
+    \begin{itemize}
+      \item For example: We usually read \textit{at most} the method name and description, never its implementation.
+    \end{itemize} 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{exampleblock}{A3 $\land$ A4 $\implies$ Theorem: Abstractions should not be \textit{leaky}}
+    Users of an interface should \textbf{not} need to care about the implementation details.
+    
+    This is the core pillar that makes \textbf{abstraction} possible. Otherwise, we would be incrementing cognitive load instead of reducing it.
+  \end{exampleblock}
+
+  \begin{figure}
+    \includegraphics[height=0.4\textheight]{images/T3/implementation-details.pdf}
+  \end{figure}
+\end{frame}
+
+\subsection{Liskov Substitution Principle (LSP)}
+\begin{frame}
+  \begin{exampleblock}{Corollary: \textbf{Liskov Substitution Principle (LSP)}}
+    A superclass must be replacable by any of it subclasses without ever breaking.
+  \end{exampleblock}
+  \begin{columns}
+    \column{.45\linewidth}
+      In other words, all subclasses must have \textbf{less restrictive preconditions} and \textbf{more restrictive postconditions} than their superclass.
+    \column{.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=1\textwidth]{images/T3/liskov.pdf}
+      \end{figure}
+  \end{columns}
+  That's the \textbf{L} in the SO\textbf{L}ID principles. 
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{However... abstractions sometimes \textit{are} leaky}
+  
+  \begin{columns}
+    \column{.5\linewidth}
+    The entire history of software engineering is one of rising levels of abstraction.
+
+    {\raggedleft
+    \footnotesize
+    - Grady Booch, co-creator of UML
+    \newline
+    \newline
+    \par}
+
+    All non-trivial abstractions, to some degree, are leaky.
+
+    {\raggedleft
+    \footnotesize
+    - Joel Spolsky, co-creator of Trello \& StackOverflow
+    \par}
+      
+    \column{.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=1\textwidth]{images/T3/abstractions.png}
+      \end{figure}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Too much abstraction}
+  
+  Creating the right abstractions can greatly reduce complexity, but \textit{too much} abstraction \textit{(over-engineering)} has the opposite effect.
+  \newline
+
+  {\footnotesize
+  \begin{minted}{java}
+public HelloWorld() {
+  HelloWorldFactory factory = HelloWorldFactory.getInstance();
+  IHelloWorld helloWorld = factory.createHelloWorld();
+  IHelloWorldString helloWorldString = helloWorld.getHelloWorld();
+  IPrintStrategy printStrategy = helloWorld.getPrintStrategy();
+  IStatusCode code = helloWorld.print(printStrategy, helloWorldString);
+  if (code.getStatusCode() != 0) {
+    throw new RuntimeException("Failed to print: "
+                                + code.getStatusCode());
+  }
+}
+  \end{minted}
+  Source: \href{https://github.com/Hello-World-EE/Java-Hello-World-Enterprise-Edition/blob/master/src/com/example/HelloWorld.java}{GitHub | Hello-World-EE/Java-Hello-World-Enterprise-Edition}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Two principles to the rescue}
+
+  \begin{exampleblock}{Keep It Simple, Stupid (KISS)}
+    The simplest, most obvious design that works is the best design. Complexity should only be added when absolutely necessary.
+  \end{exampleblock}
+
+  Perfection is reached not when there is nothing left to add, but when there is nothing left to take away.
+
+  {\raggedleft
+    \footnotesize
+    - Antoine de Saint-Exupéry, french poet
+    \par}
+
+  {\color{white} . }
+
+  You should write code as if the person who will be debugging it is a violent psychopath who knows where you live.
+
+  {\raggedleft
+    \footnotesize
+    - Phil Webb, co-creator of Spring Boot
+    \par}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Two principles to the rescue}
+
+  \begin{exampleblock}{You Aren't Gonna Need It (YAGNI)}
+    Functionality should not be added until you actually need it.
+  \end{exampleblock}
+
+  "Well, since I'm implementing user sign-up, I \textit{might as well} add user profile management too." \textbf{DON'T}
+  \newline
+
+  A core principle of agile development is that requirements are constantly changing. Adding more functionality than you currently need is a waste of time and effort, adds \textbf{unnecessary complexity}, and generates \textbf{dead code} in the long run.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Is it too late to add one more axiom?}
+
+  \begin{block}{Axiom A5: Changes propagate}
+    If module A depends on module B, and module B changes, then module A might also need to change.
+  \end{block}
+
+  This is yet another reason to keep your modules loosely coupled.
+  \newline
+
+  \begin{exampleblock}{A1 $\land$ A2 $\land$ A5 $\implies$ Theorem: Dependencies should be stable}
+    If a lot of modules depend on a module M, then we should try and make M change as little as possible.
+  \end{exampleblock}
+\end{frame}
+
+\subsection{Dependency Inversion Principle (DIP)}
+\begin{frame}
+  \begin{exampleblock}{Corollary: \textbf{Dependency Inversion Principle (DIP)}}
+    High-level (abstract) modules should not depend on low-level (concrete) modules. Both should depend on abstractions.
+  \end{exampleblock}
+  Why? Because low-level modules are usually more likely to change due to implementation details, while abstractions are more stable.
+
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{images/T3/dependency-inversion.pdf}
+  \end{figure}
+\end{frame}
+
+
+\section{Block B - Design Patterns}
+\subsection{What is a pattern?}
+\begin{frame}
+  \frametitle{What is a pattern?}
+  
+  
+\end{frame}
+
+\end{document}
