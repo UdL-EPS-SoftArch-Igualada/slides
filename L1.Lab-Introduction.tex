@@ -31,7 +31,7 @@
 {
   Bachelor's Degree in Computer Engineering
 }
-\date{Academic course 2025/26}
+\date{Academic year 2025/26}
 % End Titlepage
 
 \AtBeginSection[]{
@@ -77,7 +77,7 @@
   \frametitle{What is Enterprise Software?}
 
   \begin{itemize}
-    \item \textbf{Lovalace} wrote the first algorithms for Babbage's Analytical Engine. They were \textbf{simple programs} and were meant as an intellectual exercise or proof of concept.
+    \item \textbf{Lovelace} wrote the first algorithms for Babbage's Analytical Engine. They were \textbf{simple programs} and were meant as an intellectual exercise or proof of concept.
 
       \vfill
 
@@ -139,7 +139,7 @@
       \begin{itemize}
         \item We'll need a database.
       \end{itemize}
-    \item The entire system must be performant, reliable and secure.
+    \item The entire system must be performant, reliable, and secure.
   \end{itemize}
 \end{frame}
 
@@ -160,7 +160,7 @@
   \url{https://survey.stackoverflow.co/2025/technology/}
   \newline
   \newline
-  Other decisions that need to be made:
+  Other decisions to make:
   \begin{itemize}
     \item Client-Side Rendering vs Server-Side Rendering
     \item REST vs GraphQL
@@ -178,6 +178,19 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Source code hosting}
+  Code will be hosted on \href{https://github.com/UdL-EPS-SoftArch-Igualada}{\textbf{GitHub}}.
+  \newline
+
+  We will use some static analysis tools to keep code quality high and speed up code review:
+  \begin{itemize}
+    \item \textbf{udl-softarch[bot]}: custom GitHub automation bot (more on that next week).
+    \item \textbf{\href{https://www.sonarsource.com/products/sonarqube/}{SonarQube}}: The de-facto standard for static code analysis.
+    \item \textbf{\href{https://www.coderabbit.ai/}{CodeRabbit}}: AI-powered code review assistant (let's see how it performs).
+  \end{itemize}
+\end{frame}
+
 \section{Block C - Project structure \& demo}
 
 \begin{frame}
@@ -187,7 +200,7 @@
   \begin{itemize}
     \item \texttt{pom.xml}: Maven project configuration and dependencies.
     \item \texttt{MainApplication.java}: Main application entry point.
-    \item \texttt{config/*}: Sprint components and configuration.
+    \item \texttt{config/*}: Spring components and configuration.
   \end{itemize}
 
 \end{frame}
@@ -291,8 +304,8 @@
 
   \begin{enumerate}
     \item Make sure you have completed the "Group creation" test. Wait to get access to the "UdL-EPS-SoftArch-Igualada" GitHub organization.
-    \item \textbf{Fork} the backend (Java) repository. Be careful \textbf{not} to fork the \textit{template} repo.
-    \item Have a look around the repo.
+    \item \textbf{Fork} the backend (Java) repository. Be careful \textbf{not} to fork the \textit{template} repository.
+    \item Have a look around the repository.
   \end{enumerate}
 \end{frame}
 
