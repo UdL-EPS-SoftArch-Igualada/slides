@@ -55,6 +55,33 @@
 \end{frame}
 
 \section{Block A - Rediscovering Software Engineering}
+
+\begin{frame}
+  \frametitle{Why "rediscover"?}
+  
+  Because the SOLID principles are usually taught like this:
+  \begin{figure}
+    \includegraphics[height=0.55\textheight]{images/T3/ten-commandments.png}
+    
+    \textit{"These are the rules!"}
+    \caption{\centering Charlton Heston as Moses in \textit{The Ten Commandments} (1956)}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Why "rediscover"?}
+  
+  But they should be taught like this:
+  \begin{figure}
+    \includegraphics[height=0.55\textheight]{images/T3/socrates.jpg}
+
+    \textit{"If we agree on the axioms, the conclusion reveals itself."}
+    \caption{\centering Socrates teaching a group of athenians}
+  \end{figure}
+
+\end{frame}
+
 \begin{frame}
   \frametitle{Our goals}
   
@@ -445,14 +472,100 @@ public HelloWorld() {
   \begin{figure}
     \includegraphics[width=1\textwidth]{images/T3/dependency-inversion.pdf}
   \end{figure}
+
+  That's the \textbf{D} in the SOLI\textbf{D} principles. 
+\end{frame}
+
+\subsection{Open-Closed Principle (OCP)}
+\begin{frame}
+  \frametitle{Taking it one step further}
+  What if we could design a system where new features \textbf{do not} propagate \textbf{any} change at all?
+  \newline
+
+  \begin{exampleblock}{Corollary: \textbf{Open-closed principle (OCP)}}
+    Entities (classes, modules) should be open (available) for extension, but closed (stable) for modification.
+
+    In other words, adding functionality to a module or library should not require modifying \textit{any} of its existing code.
+  \end{exampleblock}
+
+  That's the \textbf{O} in the S\textbf{O}LID principles. 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{...but how?!}
+  Example where the Open-Closed Principle is \textbf{not} followed:
+  \newline
+
+  \begin{minted}{java}
+IPaymentMethod payment = getPaymentMethod();
+if (payment.getType() == PaymentType.PAYPAL) {
+  showInstantCheckout("payment.paypal.com", 
+                      payment.getInstantToken());
+} else if (payment.getType() == PaymentType.VISA) {
+  showBankCheckout("secure.visa.com",
+                   payment.getBankNumber());
+} else if (payment.getType() == PaymentType.MASTERCARD) {
+  showBankCheckout("pay.mastercard.com",
+                   payment.getBankNumber());
+}
+  \end{minted}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{...but how?!}
+  Example where the Open-Closed Principle \textbf{is} followed:
+  \newline
+
+  \begin{minted}{java}
+IPaymentMethod payment = getPaymentMethod();
+if (payment.supportsInstantCheckout()) {
+  showInstantCheckout(payment.getCheckoutUrl(),
+                      payment.getInstantToken());
+} else {
+  showBankCheckout(payment.getCheckoutUrl(),
+                   payment.getBankNumber());
+}
+  \end{minted}
+  {\color{white} . }
+
+  To add a new payment method, just create a new class and implement the required abstract methods. Zero changes are required in the existing code.
+\end{frame}
+
+\begin{frame}[fragile]
+  But wait! That code also violated the \textbf{Liskov Substitution Principle}!
+  
+  \texttt{Paypal} doesn't implement \texttt{getBankNumber}, \texttt{Visa} and \texttt{Mastercard} don't implement \texttt{getInstantToken}. We can fix it by adding an extra interface inheritance layer.
+  \newline
+
+  \begin{minted}{java}
+IPaymentMethod payment = getPaymentMethod();
+if (payment instanceof InstantPaymentMethod instant) {
+  showInstantCheckout(instant.getCheckoutUrl(),
+                      instant.getInstantToken());
+} else if (payment instanceof BankPaymentMethod bank) {
+  showBankCheckout(bank.getCheckoutUrl(),
+                   bank.getBankNumber());
+}
+  \end{minted}
+  
 \end{frame}
 
 
 \section{Block B - Design Patterns}
-\subsection{What is a pattern?}
+\subsection{What is a design pattern?}
 \begin{frame}
-  \frametitle{What is a pattern?}
+  \frametitle{What is a design pattern?}
   
+  Until now, we have seen \textbf{Design Principles}. They are \textit{general guidelines} that tells us how a well-designed system should look like.
+  \newline
+
+  In contrast, \textbf{Design Patterns} are \textit{concrete solutions} to common design problems.
+  \newline
+
+  \begin{block}{Metaphor}
+    Think of \textbf{design principles} as a \textit{compass} or a \textit{guiding star} that tells the direction to follow, and \textbf{design patterns} as \textit{blueprints for building a bridge} to continue the journey.
+  \end{block}
   
 \end{frame}
 
