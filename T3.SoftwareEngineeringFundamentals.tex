@@ -195,7 +195,7 @@
   \vfill
   \begin{minted}{java}
 public Session authenticateSessionUser(String token) {
-  User user = getSessionUser(token);
+  User user = getSesionUser(token);
   if (!user.isAuthenticated() || user.isBanned()) {
     throw new UnauthenticatedUserException();
   }
@@ -447,6 +447,87 @@ public HelloWorld() {
 
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Another way to keep code clean}
+
+  {\LARGE
+  \begin{minted}{java}
+// Code comments
+  \end{minted}
+  }
+
+  \vfill
+
+  Vote now: How important is it to add many comments to your code?
+  \begin{itemize}
+    \item 0: Comments should be always avoided at all costs.
+    \item 10: Comments are essential for understanding code.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Which comments are needed here?}
+
+  \begin{minted}{java}
+public void someMethod() {
+  // Step 1: Get age of session
+  // tSes is the number of seconds
+  int tSes = 0;
+  if (loginCookie != null) {
+    // The user has a login cookie
+    // Calculate the age of the cookie
+    tSes = now() - loginCookie.timestamp();
+  } else {
+    // The user doesn't have a cookie
+    tSes = 3600;  // By default, assume 1 hour
+  }
+  // Step 2: Cleanup old sessions
+  ...
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{None of them!}
+
+  \begin{minted}{java}
+private static final Duration DEFAULT_SESSION_AGE =
+    Duration.ofHours(1);
+
+public void someMethod() {
+  Duration sessionAge = getSessionAge();
+  cleanupOldSessions(sessionAge);
+}
+
+private Duration getSessionAge() {
+  if (loginCookie != null) {
+    int cookieAge = now() - loginCookie.timestamp();
+    return Duration.ofSeconds(cookieAge);
+  } else {
+    return DEFAULT_SESSION_AGE;
+  }
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{When to use comments}
+
+  Comments can be useful in some (rare) cases, such as providing context for non-obvious decisions.
+
+  \begin{minted}{java}
+// This affects how often we try to fetch new session
+// data from the server, modify with care!
+// We chose 1 hour to match the Redis TTL.
+private static final Duration DEFAULT_SESSION_AGE = ...
+  \end{minted}
+
+  \vfill
+
+  In most cases, needing to add a comment should be considered a \textit{design failure}.\footnote{For more information: \url{https://refactoring.guru/smells/comments}}
+
+\end{frame}
+
 \begin{frame}
   \frametitle{Is it too late to add one more axiom?}
 
@@ -479,7 +560,9 @@ public HelloWorld() {
 \subsection{Open-Closed Principle (OCP)}
 \begin{frame}
   \frametitle{Taking it one step further}
-  What if we could design a system where new features \textbf{do not} propagate \textbf{any} change at all?
+  What if we could design a system where new features \textbf{do not propagate any change} at all?
+
+  In such system, adding new functionality would never cause a regression on existing features.
   \newline
 
   \begin{exampleblock}{Corollary: \textbf{Open-closed principle (OCP)}}
@@ -535,7 +618,7 @@ if (payment.supportsInstantCheckout()) {
 \begin{frame}[fragile]
   But wait! That code also violated the \textbf{Liskov Substitution Principle}!
   
-  \texttt{Paypal} doesn't implement \texttt{getBankNumber}, \texttt{Visa} and \texttt{Mastercard} don't implement \texttt{getInstantToken}. We can fix it by adding an extra interface inheritance layer.
+  \texttt{Paypal} doesn't implement \texttt{getBankNumber}, \texttt{Visa} and \texttt{Mastercard} don't implement \texttt{getInstantToken}. We can fix it by adding an extra layer of interface inheritance.
   \newline
 
   \begin{minted}{java}
