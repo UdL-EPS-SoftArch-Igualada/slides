@@ -469,7 +469,7 @@ public HelloWorld() {
   \frametitle{Which comments are needed here?}
 
   \begin{minted}{java}
-public void someMethod() {
+public void prunePreviousSessions() {
   // Step 1: Get age of session
   // tSes is the number of seconds
   int tSes = 0;
@@ -494,7 +494,7 @@ public void someMethod() {
 private static final Duration DEFAULT_SESSION_AGE =
     Duration.ofHours(1);
 
-public void someMethod() {
+public void prunePreviousSessions() {
   Duration sessionAge = getSessionAge();
   cleanupOldSessions(sessionAge);
 }
@@ -636,7 +636,6 @@ if (payment instanceof InstantPaymentMethod instant) {
 
 
 \section{Block B - Design Patterns}
-\subsection{What is a design pattern?}
 \begin{frame}
   \frametitle{What is a design pattern?}
   
@@ -650,6 +649,89 @@ if (payment instanceof InstantPaymentMethod instant) {
     Think of \textbf{design principles} as a \textit{compass} or a \textit{guiding star} that tells the direction to follow, and \textbf{design patterns} as \textit{blueprints for building a bridge} to continue the journey.
   \end{block}
   
+\end{frame}
+
+\begin{frame}
+  \frametitle{Parts of a design pattern}
+
+  \begin{enumerate}
+    \item Description of the problem
+    \begin{itemize}
+      \item What problem does this pattern solve?
+      \item It must be a \textit{common/recurring} problem (otherwise the pattern isn't very useful).
+    \end{itemize}
+    \item A \textit{reusable}, well-tried solution to the problem
+    \begin{itemize}
+      \item Static part: which classes to create. The clearest way is usually with a UML diagram.
+      \item Dynamic part: how the classes interact. This can be shown with sequence diagrams or with a pseudocode example.
+    \end{itemize}
+    \item Negative consequences or trade-offs
+    \begin{itemize}
+      \item When \textit{not} to use the pattern.
+      \item Critiques and limitations of the pattern.
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Some of the classic\footnote{The 23 patterns known as the \textit{Gang of Four} (GoF) patterns are commonly referenced in literature and are considered foundational. However, there are \textit{many} other design patterns.} design patterns}
+
+  \centering
+  \renewcommand{\arraystretch}{4}
+  \begin{tabular}{ccccc}
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/abstract-factory.png}\\
+      {\small Abstract Factory}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/builder.png}\\
+      {\small Builder}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/decorator.png}\\
+      {\small Decorator}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/template-method.png}\\
+      {\small Template Method}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/strategy.png}\\
+      {\small Strategy}
+    \end{minipage}
+    \\
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/singleton.png}\\
+      {\small Singleton}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/proxy.png}\\
+      {\small Proxy}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/adapter.png}\\
+      {\small Adapter}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/observer.png}\\
+      {\small Observer}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \includegraphics[width=\linewidth]{images/T3/patterns/state.png}\\
+      {\small State}
+    \end{minipage}
+  \end{tabular}
+
+  \vspace{0.6cm}
+  Great online resource for learning about them: \textbf{\href{https://refactoring.guru/design-patterns}{Refactoring Guru}}.
 \end{frame}
 
 \end{document}
