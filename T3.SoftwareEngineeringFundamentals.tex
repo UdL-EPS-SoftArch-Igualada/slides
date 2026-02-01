@@ -123,6 +123,24 @@
 
 \end{frame}
 
+\subsection{Don't Repeat Yourself (DRY)}
+\begin{frame}
+
+  \begin{exampleblock}{Corollary: \textbf{Don't Repeat Yourself (DRY) principle}}
+    Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.
+  \end{exampleblock}
+
+  In other words, \textbf{do not \textit{ever} copy and paste} a method, unless it is absolutely necessary and justified.
+  \newline
+
+  If you duplicate logic, whenever a change is made, you will need to:
+  \begin{enumerate}
+    \item Know/remember that someone duplicated that code (the compiler will not help you).
+    \item Perform the same change a second time.
+  \end{enumerate}
+
+\end{frame}
+
 \begin{frame}
   \begin{block}{Axiom A3: Humans are bad at managing complexity}
     The human brain has a limited capacity for understanding and managing \textbf{complexity}. \newline Complexity is \textbf{reduced through abstraction}.
