@@ -1,0 +1,200 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usepackage{theme/theme}
+  \setbeamercovered{transparent}
+}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{minted}
+\usepackage{libs/tikz-uml}
+
+% Uncomment me when you need to insert code
+\usepackage{color}
+\usepackage{listings}
+% End Code
+
+% End Header
+
+% Titlepage
+\newcommand{\maintitle}{L3. Design Patterns Project}
+\newcommand{\deliverableDay}{March 15 (Sunday)}
+\newcommand{\presentationDay}{March 16 (Monday)}
+\title{\maintitle}
+\author{Enterprise Software Architectures}
+\institute
+{
+  Bachelor's Degree in Computer Engineering
+}
+\date{Academic year 2025/26}
+% End Titlepage
+
+\AtBeginSection[]{
+  \begin{frame}
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\insertsectionhead
+    \end{beamercolorbox}
+  \end{frame}
+}
+
+% Slides
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Goals}
+
+  You will be assigned a design pattern at random. You must:
+  \begin{itemize}
+    \item Do your own research and learn about the pattern.
+    \item Create a presentation about your design pattern.
+    \item Present the design pattern to the class.
+    \begin{itemize}
+      \item You will have \textbf{10 minutes}.
+      \item Both members of the group \textbf{must} participate in the presentation.
+      \item Reading from written notes is \textbf{not} allowed.
+      \item You must \textit{understand} what you are talking about, not merely repeat a script.
+    \end{itemize}
+    \item Answer our questions to demonstrate your understanding.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Deadlines}
+
+  You must deliver a PDF version of your presentation \href{https://cv.udl.cat/portal}{through the CV} before \textbf{\deliverableDay} at 23:55h.
+  \newline
+  
+  Everyone will present on \textbf{\presentationDay}, in a random order.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Content of the Presentation (all patterns \textbf{except Singleton})}
+
+  \textbf{Part A: Explain the pattern} (recommended: $\sim$7 minutes\footnote{Just a suggestion, you can distribute your 10 minutes in any way you prefer.})
+  \begin{itemize}
+    \item See "Parts of a design pattern" in T3.
+  \end{itemize}
+
+  \textbf{Part B: Usage in our project} (recommended: $\sim$3 minutes)
+  \begin{itemize}
+    \item If we use it in our project, explain where and how. Show real code snippets.
+    \item If we don't use it (and it would make sense to add it), submit a PR and explain it in your presentation.
+    \item If using it doesn't currently make sense, invent a hypothetical new feature \textbf{in our project} where it can be used. Include \textit{correct} Java + Spring Boot code implementing the pattern.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Content of the Presentation (\textbf{Singleton})}
+
+  \textbf{Part A: Explain the pattern} (recommended: $\sim$5 minutes\footnote{Just a suggestion, you can distribute your 10 minutes in any way you prefer.})
+  \begin{itemize}
+    \item See "Parts of a design pattern" in T3.
+  \end{itemize}
+
+  \textbf{Part B: Alternatives} (recommended: $\sim$5 minutes)
+  \begin{itemize}
+    \item What is an "Anti-pattern"? Why is Singleton currently considered an anti-pattern?
+    \item Explain 1 or 2 ways of accomplishing the same goal as Singleton, without its drawbacks.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Distributing the patterns}
+
+  \centering
+  \renewcommand{\arraystretch}{4}
+  \begin{tabular}{ccccc}
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{1}
+      \includegraphics[width=\linewidth]{images/T3/patterns/abstract-factory.png}\\
+      {\small Abstract Factory}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{2}
+      \includegraphics[width=\linewidth]{images/T3/patterns/builder.png}\\
+      {\small Builder}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{3}
+      \includegraphics[width=\linewidth]{images/T3/patterns/decorator.png}\\
+      {\small Decorator}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{4}
+      \includegraphics[width=\linewidth]{images/T3/patterns/template-method.png}\\
+      {\small Template Method}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{5}
+      \includegraphics[width=\linewidth]{images/T3/patterns/strategy.png}\\
+      {\small Strategy}
+    \end{minipage}
+    \\
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{6}
+      \includegraphics[width=\linewidth]{images/T3/patterns/singleton.png}\\
+      {\small Singleton}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{7}
+      \includegraphics[width=\linewidth]{images/T3/patterns/proxy.png}\\
+      {\small Proxy}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{8}
+      \includegraphics[width=\linewidth]{images/T3/patterns/adapter.png}\\
+      {\small Adapter}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{9}
+      \includegraphics[width=\linewidth]{images/T3/patterns/observer.png}\\
+      {\small Observer}
+    \end{minipage}
+    &
+    \begin{minipage}{0.16\linewidth}\centering
+      \textbf{10}
+      \includegraphics[width=\linewidth]{images/T3/patterns/state.png}\\
+      {\small State}
+    \end{minipage}
+  \end{tabular}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Closing words}
+
+  Both mid-term \textbf{exams may contain questions} about the design patterns presented in class.  \newline
+
+  Remember to stick to \textbf{10 minutes} for your presentation, to allow all your classmates to present in a single day.
+
+  We know it's not easy to condense everything into so little time, but this demonstrates that you have really understood the material.
+  \vfill
+
+  \textit{“I apologize for such a long letter - I didn't have time to write a short one.”}
+
+  {\raggedleft
+    \footnotesize
+    - Mark Twain
+    \par}
+\end{frame}
+
+\end{document}
