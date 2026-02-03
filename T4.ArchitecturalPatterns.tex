@@ -1,0 +1,278 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usepackage{theme/theme}
+  \setbeamercovered{transparent}
+}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{minted}
+
+% Uncomment me when you need to insert code
+\usepackage{color}
+\usepackage{listings}
+% End Code
+
+% End Header
+
+% Titlepage
+\newcommand{\maintitle}{T4. Architectural Patterns}
+\title{\maintitle}
+\author{Enterprise Software Architectures}
+\institute
+{
+  Bachelor's Degree in Computer Engineering
+}
+\date{Academic year 2025/26}
+% End Titlepage
+
+\AtBeginSection[]{
+  \begin{frame}
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\insertsectionhead
+    \end{beamercolorbox}
+  \end{frame}
+}
+
+% Slides
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{\maintitle}
+  \tableofcontents[subsectionstyle=show]
+\end{frame}
+
+\section{Block A - Introduction to Architectural Patterns}
+
+\begin{frame}
+  \frametitle{Architecture vs. Design (real world)}
+  
+  Discuss similarities / differences between \textit{Architecture} and \textit{Design}:
+  \begin{columns}
+    \column{.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=1\textwidth]{images/T4/real-world-architecture.png}
+        \caption{Architectural drawing of a house. Source: \href{https://commons.wikimedia.org/wiki/File:Architectural_Drawing.gif}{Wikimedia Commons}}
+      \end{figure}
+    \column{.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=1\textwidth]{images/T4/real-world-design.png}
+        \caption{Interior design drawing. Source: \href{https://commons.wikimedia.org/wiki/File:Architectural_Drawing.gif}{Tihon Grenaderov at SuperColoring (license: CC BY-NC 4.0)}}
+      \end{figure}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Architecture vs. Design (real world)}
+  
+  Buth are very similar, but at \textit{different scales}. This gives them different properties:
+  \newline
+
+  Architecture...
+  \begin{itemize}
+    \item is about the \textbf{overall structure} of the building.
+    \item has a large impact on its \textbf{integrity and reliability}.
+    \item An architectural mistake is much \textbf{harder to fix} after the fact.
+  \end{itemize}
+
+  Design...
+  \begin{itemize}
+    \item focuses on \textbf{smaller details}.
+    \item occurs \textbf{in parallel or slightly after} architecture.
+    \item is \textbf{constrained by} the architectural boundaries (rooms), and must \textbf{fit and complement} them.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Software Architecture and Design}
+
+  The same concepts transfer to the context of Software Engineering.
+  \newline
+
+  Architecture...
+  \begin{itemize}
+    \item is about the \textbf{high-level structure} of the software system.
+    \item defines \textbf{major components}, their responsibilities, and how they interact.
+    \item has a large impact on its \textbf{reliability, security, scalability and performance}.
+    \item An architectural mistake is much \textbf{harder to fix} after the fact.
+  \end{itemize}
+
+ 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Software Architecture and Design}
+
+  Design...
+  \begin{itemize}
+    \item focuses on \textbf{smaller, lower-level components}.
+    \item occurs \textbf{in parallel or slightly after} architecture. Both are part of the \textit{Design stage}.
+    \item is \textbf{constrained by} the architectural boundaries (high-level decisions), and must \textbf{fit and complement} them.
+  \end{itemize}
+  {\color{white} . }
+  
+  In other words, design \textit{fills in the details} within the architectural framework.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Architectural Patterns}
+
+  \begin{itemize}
+    \item \textbf{Design Pattern}: Reusable solution to a common \textit{design problem}.
+    \item \textbf{Architectural Pattern}: Reusable solution to a common \textit{architectural problem}.
+  \end{itemize}
+  {\color{white} . }
+
+  Therefore, architectural patterns are well-known ways to organize our system at a high level.
+\end{frame}
+
+\section{Block B - Important architectural patterns}
+
+\subsection{Layered architecture}
+\begin{frame}
+  \frametitle{Layered architecture}
+  Also known as \textit{tiered}, \textit{N-layer} or \textit{N-tier} architecture.
+  \newline
+
+  \textbf{The Problem:} How can we decompose a complex problem in such a way that promotes \textit{separation of concerns}?
+  \newline
+
+  \textbf{The Solution:} Organize the system into \textit{layers}:
+  \begin{itemize}
+    \item Layers can be separated logically (different modules) or physically (different machines).
+    \item Each layer is only allowed to \textbf{depend on those below it} (use their services). It is unaware of layers above it.
+    \item Conceptually, the \textit{User} is at the topmost layer.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Layered architecture: Variants}
+  
+  \textbf{Strict layered architecture}: Each layer can only communicate with the \textit{layer directly below it}.
+  \newline
+
+  \textbf{Relaxed layered architecture}: Layers can communicate directly with \textit{any layer below them}.
+
+  \begin{itemize}
+    \item Advantages:
+    \begin{itemize}
+      \item More flexibility.
+      \item Potentially higher performance (skip the overhead of intermediate layers).
+    \end{itemize}
+    \item Disadvantages:
+    \begin{itemize}
+      \item Much higher coupling ($O(n^2)$ potential dependencies instead of $O(n)$).
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Layered architecture example: The OSI model}
+  
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{images/T4/osi-model.pdf}
+    \caption{7-layer OSI model}
+  \end{figure}
+
+  Is it \textit{strict} or \textit{relaxed}? Is the separation physical or logical?
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Layered architecture: Disadvantages}
+  
+  \begin{itemize}
+    \item Deciding \textbf{which layers} to create and which \textbf{responsibilities} to assign to each layer can be hard.
+    \item Can have \textbf{lower performance}, since requests must traverse multiple layers.
+    \begin{itemize}
+      \item If the separation between layers is just logical, the added overhead is usually negligible.
+    \end{itemize}
+    \item Can cause \textbf{model duplication} (potential DRY violation).
+    \begin{itemize}
+      \item New/modified fields might require similar changes to the data structures in multiple layers.
+      \item This is often mitigated in modern languages or frameworks.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{3-layer architecture}
+\begin{frame}
+  \frametitle{3-layer architecture}
+
+  Specific case of layered architecture with 3 layers:
+  \begin{itemize}
+    \item \textbf{Presentation layer}: Interaction with the user or client application (UI or API).
+    \item \textbf{Application/Domain layer}: Application-specific domain and business logic. Data processing and algorithms.
+    \item \textbf{Persistence/Data layer}: Data sources for storing and reading information.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{3-layer architecture example: Client-Server-DB architecture}
+
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{images/T4/3-layer.pdf}
+  \end{figure}
+  Is it \textit{strict} or \textit{relaxed}? Is the separation physical or logical?
+\end{frame}
+
+\subsection{Transaction Script}
+\begin{frame}
+  \frametitle{Transaction Script}
+
+  \textbf{The Problem:} How can we organize the \textit{domain logic} (business rules and processes) of our application, the simplest way possible?
+  \newline
+
+  \textbf{The Solution:} For each API endpoint, write one procedure (function) that handles the entire transaction. 
+  
+  If procedures get too big, or the same code gets repeated (DRY), extract smaller helper functions.
+  \newline
+
+  \begin{itemize}
+    \item Transaction boundaries are obvious.
+    \item It's a good fit for applications with \textbf{simple data} and \textbf{linear workflows} (KISS principle).
+    \item It's the only option in \textbf{procedural languages} like C.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transaction Script: Disadvantages}
+
+  \begin{itemize}
+    \item It \textbf{doesn't scale well} for complex domains.
+    \begin{itemize}
+      \item Difficult to maintain and understand for complex, highly interconnected data structures.
+    \end{itemize}
+    \item \textbf{Weak reusability} and composition.
+    \begin{itemize}
+      \item Logic is organized around use-cases instead of domain concepts, which can create hidden duplication.
+    \end{itemize}
+    \item \textbf{Low cohesion}.
+    \begin{itemize}
+      \item Related logic is scattered across multiple procedures instead of being grouped together.
+    \end{itemize}
+    \item \textbf{Hard to extend}.
+    \begin{itemize}
+      \item New fields may require modifying all existing procedures.
+      \item New endpoints require writing a full new procedure, instead of hooking into reusable components.
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\end{document}

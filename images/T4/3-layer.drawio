@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.6">
+  <diagram name="Page-1" id="pcrjA9gjGnHbJ4MpnEOS">
+    <mxGraphModel dx="1032" dy="588" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" adaptiveColors="simple">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-1" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" value="" vertex="1">
+          <mxGeometry height="54" width="42.599999999999994" x="830" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-2" parent="1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/database.svg;" value="" vertex="1">
+          <mxGeometry height="37" width="50" x="979" y="533.2" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-4" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Smartphone.svg;" value="" vertex="1">
+          <mxGeometry height="43.199999999999996" width="19.8" x="681.1" y="527" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-6" edge="1" parent="1" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="720" y="553" as="sourcePoint" />
+            <mxPoint x="810" y="553" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;Presentation layer&lt;/div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Frontend application&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="122" x="630" y="577" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-49" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Depends on&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="733" y="527" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-50" edge="1" parent="1" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="883" y="553" as="sourcePoint" />
+            <mxPoint x="973" y="553" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-51" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Depends on&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="896" y="527" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-52" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;Application layer&lt;/div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Backend application&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="122" x="790.3" y="577" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-53" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;Data layer&lt;/div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Database&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="122" x="943" y="577" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-54" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Smartphone.svg;" value="" vertex="1">
+          <mxGeometry height="43.199999999999996" width="19.8" x="645" y="643" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-55" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;Presentation layer&lt;/div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Graphical user interface&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="685" y="649.6" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-56" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;Application layer&lt;/div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Light domain model (DTOs)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="122" x="826" y="649.6" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-57" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Data&lt;/span&gt;&amp;nbsp;layer&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;API services&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="93" x="972" y="649.6" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-59" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;Presentation layer&lt;/div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;REST API endpoints&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="685" y="726.6" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-60" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;Application layer&lt;/div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Heavy domain model and business logic&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="122" x="826" y="726.6" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-61" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Data&lt;/span&gt;&amp;nbsp;layer&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Data access Objects (DAOs)&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="93" x="972" y="726.6" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-62" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" value="" vertex="1">
+          <mxGeometry height="54" width="42.599999999999994" x="635" y="714.6" as="geometry" />
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-67" edge="1" parent="1" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="798" y="664.5999999999999" as="sourcePoint" />
+            <mxPoint x="821.7" y="664.3" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-70" edge="1" parent="1" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="798" y="741.5999999999999" as="sourcePoint" />
+            <mxPoint x="821.7" y="741.3" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-72" edge="1" parent="1" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="948" y="664.5999999999999" as="sourcePoint" />
+            <mxPoint x="971.7" y="664.3" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Mra83rUgKD0cbw3g-3uW-74" edge="1" parent="1" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="948" y="741.65" as="sourcePoint" />
+            <mxPoint x="971.7" y="741.35" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

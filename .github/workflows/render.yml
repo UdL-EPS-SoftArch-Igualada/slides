@@ -1,0 +1,58 @@
+name: Build LaTeX PDFs
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live + latexmk
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-bibtex-extra \
+            biber
+          latexmk -v
+
+      - name: Build PDFs from .tex files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build
+
+          mapfile -d '' TEXFILES < <(find . -maxdepth 1 -type f -name "*.tex" -print0)
+          if [[ "${#TEXFILES[@]}" -eq 0 ]]; then
+            echo "No .tex files found at repo root; skipping."
+            exit 0
+          fi
+
+          for tex in "${TEXFILES[@]}"; do
+            echo "==> Building: $tex"
+            latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build "$tex"
+          done
+
+          echo "Built PDFs:"
+          ls -la build/*.pdf
+
+      - name: Upload PDFs as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: latex-pdfs
+          path: build/*.pdf
+          if-no-files-found: error
+          retention-days: 14
