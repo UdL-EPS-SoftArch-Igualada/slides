@@ -3,7 +3,7 @@
         "commands": [
             {
                 "match": "\\.tex",
-                "cmd": "xelatex ${file}"
+                "cmd": "xelatex -shell-escape ${file}"
             }
         ]
     },

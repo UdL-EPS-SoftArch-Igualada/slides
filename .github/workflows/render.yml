@@ -15,25 +15,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install TeX Live + latexmk
+      - name: Cache APT packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            /var/cache/apt/archives
+            /var/lib/apt/lists
+          key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/render.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-apt-
+
+      - name: Install TeX Live
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            latexmk \
             texlive-latex-base \
             texlive-latex-recommended \
             texlive-latex-extra \
             texlive-fonts-recommended \
             texlive-fonts-extra \
             texlive-bibtex-extra \
+            texlive-xetex \
             biber
-          latexmk -v
 
       - name: Build PDFs from .tex files
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p build
+
+          echo "LS IMAGES"
+          ls -la
+          ls -la theme
+          ls -la theme/header
 
           mapfile -d '' TEXFILES < <(find . -maxdepth 1 -type f -name "*.tex" -print0)
           if [[ "${#TEXFILES[@]}" -eq 0 ]]; then
@@ -43,16 +56,16 @@ jobs:
 
           for tex in "${TEXFILES[@]}"; do
             echo "==> Building: $tex"
-            latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build "$tex"
+            xelatex -shell-escape "$tex"
           done
 
           echo "Built PDFs:"
-          ls -la build/*.pdf
+          ls -la *.pdf
 
       - name: Upload PDFs as artifacts
         uses: actions/upload-artifact@v4
         with:
           name: latex-pdfs
-          path: build/*.pdf
+          path: "*.pdf"
           if-no-files-found: error
           retention-days: 14
