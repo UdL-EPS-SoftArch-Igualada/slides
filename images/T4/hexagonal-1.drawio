@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.6">
+  <diagram name="Page-1" id="pcrjA9gjGnHbJ4MpnEOS">
+    <mxGraphModel dx="825" dy="1237" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" adaptiveColors="simple">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-146" edge="1" parent="1" source="uBk-cZUA2gepFaoTNupJ-144" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;dashed=1;dashPattern=8 8;endArrow=open;endFill=0;" target="uBk-cZUA2gepFaoTNupJ-145">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-148" edge="1" parent="1" source="uBk-cZUA2gepFaoTNupJ-144" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startSize=11;endSize=11;" target="uBk-cZUA2gepFaoTNupJ-147">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-144" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Application Core&lt;br&gt;&lt;i&gt;(Domain Layer)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="340" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-145" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;div&gt;Data Port&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="520" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-147" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;div&gt;Input Port&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="340" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-149" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Database Adapter&lt;br&gt;&lt;i&gt;(Data Layer)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="520" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-150" edge="1" parent="1" source="uBk-cZUA2gepFaoTNupJ-149" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startSize=11;endSize=11;" target="uBk-cZUA2gepFaoTNupJ-145">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="310" as="sourcePoint" />
+            <mxPoint x="410" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-151" edge="1" parent="1" source="uBk-cZUA2gepFaoTNupJ-152" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;dashed=1;dashPattern=8 8;endArrow=open;endFill=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uBk-cZUA2gepFaoTNupJ-152" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="User Interface&lt;br&gt;&lt;i&gt;(Presentation Layer)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

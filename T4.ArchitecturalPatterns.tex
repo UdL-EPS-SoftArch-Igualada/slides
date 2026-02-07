@@ -231,6 +231,50 @@
   Is it \textit{strict} or \textit{relaxed}? Is the separation physical or logical?
 \end{frame}
 
+\subsection{Hexagonal architecture}
+\begin{frame}
+  \frametitle{Improving the layered architecture}
+
+  The traditional layered architecture violates the \textbf{Dependency Inversion Principle}, because high-level layers depend on low-level layers (details).
+  
+  This causes 2 problems:
+  \begin{itemize}
+    \item Coupling Presentation $\rightarrow$ Application: UI code can get contaminated with domain logic.
+    \item Coupling Application $\rightarrow$ Persistence: Domain is hard to fully test in isolation, because it depends on the database.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Applying the Dependency Inversion Principle}
+
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{images/T4/hexagonal-1.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Taking one step further: Hexagonal architecture}
+
+  For more complex applications, we can extend this idea to add more interfaces:
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{images/T4/hexagonal-2.pdf}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hexagonal architecture}
+
+  This is known as \textbf{Hexagonal architecture}\footnote{Note that the "Hexagonal" name and shape are just metaphorical, the architecture can have an arbitrary number of ports.} or \textbf{Ports and Adapters architecture}.
+
+  Let's redraw the previous diagram the way it's usually represented:
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{images/T4/hexagonal-3.pdf}
+  \end{figure}
+
+\end{frame}
+
+\section{Block C - Domain Layer Patterns}
 \subsection{Transaction Script}
 \begin{frame}
   \frametitle{Transaction Script}
