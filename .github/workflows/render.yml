@@ -52,6 +52,8 @@ jobs:
           for tex in "${TEXFILES[@]}"; do
             echo "==> Building: $tex"
             xelatex -shell-escape "$tex"
+            # Run xelatex a second time to resolve references and create the TOC correctly
+            xelatex -shell-escape "$tex"
           done
 
           echo "Built PDFs:"
