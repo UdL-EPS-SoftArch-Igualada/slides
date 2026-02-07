@@ -238,15 +238,26 @@
   \textbf{The Problem:} How can we organize the \textit{domain logic} (business rules and processes) of our application, the simplest way possible?
   \newline
 
-  \textbf{The Solution:} For each API endpoint, write one procedure (function) that handles the entire transaction. 
-  
-  If procedures get too big, or the same code gets repeated (DRY), extract smaller helper functions.
+  \textbf{The Solution:} For each API endpoint, write one procedure (function) that handles the entire transaction.\footnote{\url{https://martinfowler.com/eaaCatalog/transactionScript.html}} 
   \newline
+  
+  If procedures get too big, or the same code gets repeated (DRY violation), extract smaller \textit{helper functions}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transaction Script}
+  \begin{figure}
+    \includegraphics[height=0.85\textheight]{images/T4/transaction-script.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transaction Script: Advantages}
 
   \begin{itemize}
     \item Transaction boundaries are obvious.
     \item It's a good fit for applications with \textbf{simple data} and \textbf{linear workflows} (KISS principle).
-    \item It's the only option in \textbf{procedural languages} like C.
+    \item It's the the most natural option in purely \textbf{procedural languages} like C.
   \end{itemize}
 \end{frame}
 
@@ -270,6 +281,128 @@
     \begin{itemize}
       \item New fields may require modifying all existing procedures.
       \item New endpoints require writing a full new procedure, instead of hooking into reusable components.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Domain Model}
+\begin{frame}
+  \frametitle{Domain Model}
+
+  \textbf{The Problem:} How can we organize the \textit{domain logic} (business rules and processes) of our application, in a way that promotes \textit{reusability} and \textit{extensibility}?
+  \newline
+
+  \textbf{The Solution:}
+  \begin{enumerate}
+    \item Create a \textbf{rich object model} that closely represents the \textbf{actual domain concepts} and their relationships.\footnote{\url{https://martinfowler.com/eaaCatalog/domainModel.html}}
+    \begin{itemize}
+      \item In other words, your domain layer should look as similar as possible to your UML class diagram.
+    \end{itemize}
+    \item Implement the domain logic as \textbf{methods} on these objects, instead of separate procedures.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Domain Model}
+
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{images/T4/domain-model.pdf}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Domain Model: Advantages}
+
+  \begin{itemize}
+    \item \textbf{Scales well} for complex domains.
+    \begin{itemize}
+      \item A domain with many interconnected concepts can be easily represented as a graph of objects with relationships.
+    \end{itemize}
+    \item Very high \textbf{cohesion} and \textbf{reusability}.
+    \begin{itemize}
+      \item Data and its corresponding behavior are encapsulated in the same class.
+      \item The behavior can be easily reused by all use-cases/endpoints that interact with that domain concept.
+    \end{itemize}
+    \item Good \textbf{extensibility} and long-term \textbf{maintainability}.
+    \begin{itemize}
+      \item New fields or logic only require modifying the relevant classes, without affecting unrelated parts of the code.
+      \item Promotes the use of \textbf{polymorphism} and behavior delegation through composition (\href{https://en.wikipedia.org/wiki/GRASP_(object-oriented_design)}{\textit{Expert} pattern}).
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Domain Model: Disadvantages}
+
+  \begin{itemize}
+    \item It requires strong \textbf{Object-Oriented Programming} (OOP) support.
+    \begin{itemize}
+      \item This is the reason why Java and C\# currently dominate the enterprise software market.
+    \end{itemize}
+    \item Mapping between the domain model (graph-like structure) and the database (relational tables) can be complex.
+    \begin{itemize}
+      \item This is known as \href{https://en.wikipedia.org/wiki/Object\%E2\%80\%93relational_impedance_mismatch}{\textbf{object-relational impedance mismatch}}.
+      \item Mitigated by using \href{https://en.wikipedia.org/wiki/Object\%E2\%80\%93relational_mapping}{\textbf{Object-Relational Mapping (ORM)}} libraries, but this adds significant complexity and performance overhead.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Table Module}
+\begin{frame}
+  \frametitle{Table Module}
+
+   \textbf{The Problem:} How can we get some of the \textbf{reusability benefits} of the Domain Model pattern, \textbf{without using OOP}?
+  \newline
+
+  \textbf{The Solution:}
+  \begin{enumerate}
+    \item Create a "table module" class for each \textbf{database table}/view, instead of for each domain concept.\footnote{\url{https://martinfowler.com/eaaCatalog/tableModule.html}}
+    \begin{itemize}
+      \item Table modules are \textit{singletons} (one instance manages all rows in the table), opposite to Domain Model objects.
+    \end{itemize}
+    \item Implement the domain logic as \textbf{class methods} that operate on the data in that table.
+  \end{enumerate} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Table Module}
+
+  \begin{figure}
+    \includegraphics[height=0.85\textheight]{images/T4/table-module.pdf}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Table Module: Advantages}
+
+  \begin{itemize}
+    \item \textbf{More structured than Transaction Script}.
+    \begin{itemize}
+      \item The DB tables roughly correspond to domain concepts, and the logic related to each concept is grouped together.
+      \item Scales moderately well for complex domains, as long as the domain logic is mostly CRUD operations on the database.
+    \end{itemize}
+    \item Unlike Domain Model, it \textbf{doesn't require OOP} support.
+    \begin{itemize}
+      \item Table modules can be implemented as a simple module with static functions.
+    \end{itemize}
+    \item \textbf{Direct mapping} to relational database tables, without the need for complex ORM libraries.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Table Module: Disadvantages}
+
+  \begin{itemize}
+    \item Tight \textbf{coupling} between the \textit{domain logic} and the \textit{data access}.
+    \begin{itemize}
+      \item This makes it hard to test the domain logic in isolation.
+      \item Changes to the database schema can require significant changes to the domain logic.
+    \end{itemize}
+    \item It's missing inheritance and other OOP features that promote \textbf{code reuse} and \textbf{extensibility}.
+    \begin{itemize}
+      \item For complex domains, this can lead to the same cohesion and maintainability issues as Transaction Script.
     \end{itemize}
   \end{itemize}
 
