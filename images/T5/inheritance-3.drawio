@@ -1,0 +1,109 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.8">
+  <diagram name="Page-1" id="DSbNqGCPRada2gL-x2dd">
+    <mxGraphModel dx="1720" dy="979" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-280" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«abstract»&lt;br&gt;&lt;i&gt;Vehicle&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="94" x="180" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-281" parent="PCL1DtMMxWJHtizhbGJb-280" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="year" vertex="1">
+          <mxGeometry height="20" width="94" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-282" parent="PCL1DtMMxWJHtizhbGJb-280" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="manufacturer" vertex="1">
+          <mxGeometry height="20" width="94" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-283" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Car&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="100" x="260" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-284" parent="PCL1DtMMxWJHtizhbGJb-283" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="doors" vertex="1">
+          <mxGeometry height="20" width="100" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-285" parent="PCL1DtMMxWJHtizhbGJb-283" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="hasSpareTire" vertex="1">
+          <mxGeometry height="20" width="100" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-286" edge="1" parent="1" source="PCL1DtMMxWJHtizhbGJb-287" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1;endSize=9;" target="PCL1DtMMxWJHtizhbGJb-280">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-287" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Truck&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="104" x="90" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-288" parent="PCL1DtMMxWJHtizhbGJb-287" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="axleCount" vertex="1">
+          <mxGeometry height="20" width="104" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-289" parent="PCL1DtMMxWJHtizhbGJb-287" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="bedLength" vertex="1">
+          <mxGeometry height="20" width="104" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-290" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;ElectricCar&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="100" x="260" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-291" parent="PCL1DtMMxWJHtizhbGJb-290" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="batteryType" vertex="1">
+          <mxGeometry height="20" width="100" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-292" parent="PCL1DtMMxWJHtizhbGJb-290" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="batteryCapacity" vertex="1">
+          <mxGeometry height="20" width="100" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-293" edge="1" parent="1" source="PCL1DtMMxWJHtizhbGJb-283" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1;endSize=9;" target="PCL1DtMMxWJHtizhbGJb-280">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="235" as="sourcePoint" />
+            <mxPoint x="315" y="195" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-294" edge="1" parent="1" source="PCL1DtMMxWJHtizhbGJb-290" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1;endSize=9;" target="PCL1DtMMxWJHtizhbGJb-283">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="533" y="235" as="sourcePoint" />
+            <mxPoint x="450" y="195" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-295" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="truck" vertex="1">
+          <mxGeometry height="90" width="110" x="400" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-296" parent="PCL1DtMMxWJHtizhbGJb-295" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id &lt;b&gt;(FK vehicle.id)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="110" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-297" parent="PCL1DtMMxWJHtizhbGJb-295" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="axleCount" vertex="1">
+          <mxGeometry height="20" width="110" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-298" parent="PCL1DtMMxWJHtizhbGJb-295" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="bedLength" vertex="1">
+          <mxGeometry height="20" width="110" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-299" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="car" vertex="1">
+          <mxGeometry height="90" width="110" x="520" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-300" parent="PCL1DtMMxWJHtizhbGJb-299" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id &lt;b&gt;(FK vehicle.id)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="110" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-301" parent="PCL1DtMMxWJHtizhbGJb-299" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="doors" vertex="1">
+          <mxGeometry height="20" width="110" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-302" parent="PCL1DtMMxWJHtizhbGJb-299" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="hasSpareTire" vertex="1">
+          <mxGeometry height="20" width="110" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-303" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="electric_car" vertex="1">
+          <mxGeometry height="90" width="110" x="520" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-304" parent="PCL1DtMMxWJHtizhbGJb-303" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id &lt;b&gt;(FK car.id)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="110" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-305" parent="PCL1DtMMxWJHtizhbGJb-303" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="batteryType" vertex="1">
+          <mxGeometry height="20" width="110" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-306" parent="PCL1DtMMxWJHtizhbGJb-303" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="batteryCapacity" vertex="1">
+          <mxGeometry height="20" width="110" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-307" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="vehicle" vertex="1">
+          <mxGeometry height="90" width="110" x="460" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-308" parent="PCL1DtMMxWJHtizhbGJb-307" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id" vertex="1">
+          <mxGeometry height="20" width="110" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-309" parent="PCL1DtMMxWJHtizhbGJb-307" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="year" vertex="1">
+          <mxGeometry height="20" width="110" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-310" parent="PCL1DtMMxWJHtizhbGJb-307" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="manufacturer" vertex="1">
+          <mxGeometry height="20" width="110" y="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

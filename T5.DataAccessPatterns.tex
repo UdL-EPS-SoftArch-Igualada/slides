@@ -1,0 +1,544 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usepackage{theme/theme}
+  \setbeamercovered{transparent}
+}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{minted}
+
+% Uncomment me when you need to insert code
+\usepackage{color}
+\usepackage{listings}
+% End Code
+
+% End Header
+
+% Titlepage
+\newcommand{\maintitle}{T5. Data Access Patterns}
+\title{\maintitle}
+\author{Enterprise Software Architectures}
+\institute
+{
+  Bachelor's Degree in Computer Engineering
+}
+\date{Academic year 2025/26}
+% End Titlepage
+
+\AtBeginSection[]{
+  \begin{frame}
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\insertsectionhead
+    \end{beamercolorbox}
+  \end{frame}
+}
+
+% Slides
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{\maintitle}
+  \tableofcontents[subsectionstyle=show]
+\end{frame}
+
+\section{Block A - Relational Database Design}
+
+\begin{frame}
+  \frametitle{Refresher: What is a relational database?}
+  
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{itemize}
+      \item Data is organized in \textbf{tables} with rows and columns.
+      \item Each table has a \textbf{primary key} that uniquely identifies each row.
+      \item Relationships between tables are established through \textbf{foreign keys}.
+      \item \textbf{SQL} (Structured Query Language) is used to query and manipulate data.
+    \end{itemize}
+    
+    \column{0.5\textwidth}
+    \centering
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{images/T5/rdb-schema.pdf}
+      \caption{Relational Database Schema. \newline Source: \href{https://pixabay.com/vectors/database-schema-data-tables-schema-1895779/}{Julie McMurry at Pixabay (license: Public Domain)}}
+    \end{figure}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mapping the domain model to a relational DB}
+  
+  In general, we want the DB schema to be \textbf{as similar as possible} to our domain. However, the two models are quite different\footnote{The relational model is based on \textit{set theory}, while OOP is based on \textit{graph theory}. This causes the infamous \textit{Object-Relational Impedance Mismatch} problems when mapping between the two (more on this later).}.
+  \newline
+
+  General mapping rules:
+  \begin{itemize}
+    \item \textbf{Entities}: OOP classes become \textbf{tables}.
+    \item \textbf{Links}: OOP references (pointers) become \textbf{foreign keys}.
+    \item \textbf{Attributes}: Class fields become \textbf{columns}.
+    \item \textbf{Collections} and \textbf{inheritance}: More complex mapping, see next slides.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mapping collections to a relational DB}
+
+  \only<1> {
+    Collections (lists, sets...) are common in most languages, but relational databases do not have a direct equivalent.
+    \newline
+  }
+
+  \only<1> {
+    \begin{itemize}
+      \item \textbf{One-to-many relationships}: Create a FK in the "many" table that references the "one" table.
+    \end{itemize}
+    \begin{figure}
+      \includegraphics[width=1\textwidth]{images/T5/map-relation-1.pdf}
+    \end{figure}
+  }
+  \only<2> {
+    \begin{itemize}
+      \item \textbf{One-to-one relationships}: Pick any one of the tables to hold a FK that references the other table.
+    \end{itemize}
+    \includegraphics[width=1\textwidth]{images/T5/map-relation-2.pdf}
+  }
+  \only<3> {
+    \begin{itemize}
+      \item \textbf{Many-to-many relationships}: Create a new "join" table with two FKs that reference the two tables.
+    \end{itemize}
+    \begin{figure}
+      \includegraphics[height=0.5\textheight]{images/T5/map-relation-3.pdf}
+    \end{figure}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mapping inheritance | Option 1: \textbf{Single Table Inheritance}}
+
+  \begin{figure}
+    \includegraphics[height=0.55\textheight]{images/T5/inheritance-1.pdf}
+  \end{figure}
+
+  One table for the \textbf{whole hierarchy} of classes.
+  \begin{itemize}
+    \item Good for simple hierarchies where most fields are shared.
+    \item Requires a \textit{discriminator} column to identify the row type.
+    \item Can lead to many null values if subclasses have many fields.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mapping inheritance | Option 2: \textbf{Concrete Table Inheritance}}
+
+  \begin{figure}
+    \includegraphics[height=0.55\textheight]{images/T5/inheritance-2.pdf}
+  \end{figure}
+
+  One table for \textbf{each non-abstract} class.
+  \begin{itemize}
+    \item Good for hierarchies where most fields are different.
+    \item Can lead to repeated columns if there are many shared fields.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mapping inheritance | Option 3: \textbf{Class Table Inheritance}}
+
+  \begin{figure}
+    \includegraphics[height=0.55\textheight]{images/T5/inheritance-3.pdf}
+  \end{figure}
+
+  One table for \textbf{each class}.
+  \begin{itemize}
+    \item Complex hierarchies with a mix of shared and different fields.
+    \item Requires joins to read/write objects, which can be expensive.
+  \end{itemize}
+\end{frame}
+
+\section{Block B - Relational Database Access Patterns}
+
+\begin{frame}
+  \frametitle{The problem: Object-Relational Impedance Mismatch}
+
+  Problems affecting both \textit{Relational} and \textit{NoSQL} databases:
+
+  \begin{itemize}
+    \item The DB datatypes may not match the domain model types.
+    \begin{itemize}
+      \item Common cases include \textbf{date/time} types and \textbf{enums}.
+    \end{itemize}
+    \item The OOP model allows \textbf{cycles} and \textbf{aliasing}, while almost all databases do not\footnote{A notable exception are \textit{graph databases}, which are designed specifically to handle such structures.}.
+    \item Database access is often slow.
+    \begin{itemize}
+      \item We need ways to avoid unnecessary DB calls while keeping the in-memory objects and the database in sync.
+    \end{itemize}
+  \end{itemize}
+
+  Problems specific to \textit{Relational} databases:
+  \begin{itemize}
+    \item We need to \textbf{flatten the object graph} into tables, and restore it when reading from the database.
+  \end{itemize}
+\end{frame}
+
+\subsection{Row Data Gateway}
+\begin{frame}
+  \frametitle{Row Data Gateway}
+
+  An in-memory class that \textbf{represents a single row} in a database table.
+
+  \begin{itemize}
+    \item Responsible for \textbf{loading and saving} its own data to the DB.
+    \item Has a \textbf{field for each column} in the table, and methods to read/write the data.
+    \item It's \textbf{not responsible for any business logic}.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Row Data Gateway}
+
+  \begin{figure}
+    \includegraphics[width=0.5\textwidth]{images/T5/row-data-gateway.png}
+    \caption{Row Data Gateway. Source: \href{https://martinfowler.com/eaaCatalog/rowDataGateway.html}{Martin Fowler's EAA Catalog}}
+  \end{figure}
+
+  Disadvantages:
+  \begin{itemize}
+    \item Very low-level, it requires manual handling of DB operations.
+    \item Does not support bulk operations, which can lead to \textbf{performance issues}.
+  \end{itemize}
+
+\end{frame}
+
+\subsection{Table Data Gateway}
+\begin{frame}
+  \frametitle{Table Data Gateway}
+
+  An in-memory class that \textbf{represents a whole table} in the database.
+
+  \begin{itemize}
+    \item Unlike \textit{Row Data Gateway}, it is a \textbf{singleton} that represents the entire table.
+    \item Read operations return collections by using the \href{https://martinfowler.com/eaaCatalog/recordSet.html}{\textbf{Record Set} pattern}\footnote{A \textit{Record Set} is a collection of rows retrieved from a database query.}.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Table Data Gateway}
+  \begin{figure}
+    \includegraphics[width=0.7\textwidth]{images/T5/table-data-gateway.png}
+    \caption{Table Data Gateway. Source: \href{https://martinfowler.com/eaaCatalog/tableDataGateway.html}{Martin Fowler's EAA Catalog}}
+  \end{figure}
+
+  Disadvantages:
+  \begin{itemize}
+    \item Also low-level, it requires manual handling of DB operations.
+  \end{itemize}
+\end{frame}
+
+\subsection{Active Record}
+\begin{frame}
+  \frametitle{Active Record}
+
+  Combination of the \textit{Row Data Gateway} and the \textit{domain object} in a single class. It includes both the \textbf{data access} code and the \textbf{business logic} code.
+  \newline
+
+  Advantage:
+  \begin{itemize}
+    \item If the domain model is identical to the database schema, it can reduce the amount of boilerplate code (\textit{KISS} principle).
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Active Record}
+
+  \begin{figure}
+    \includegraphics[height=0.3\textheight]{images/T5/active-record.png}
+    \caption{Active Record. Source: \href{https://martinfowler.com/eaaCatalog/activeRecord.html}{Martin Fowler's EAA Catalog}}
+  \end{figure}
+
+  Disadvantages:
+  \begin{itemize}
+    \item Clear violation of the \textit{Single Responsibility Principle}.
+    \item Not suitable for complex domain models or complex database schemas, as it can lead to very large, unmaintainable classes.
+    \item Also low-level, it requires manual handling of DB operations.
+  \end{itemize}
+
+\end{frame}
+
+\subsection{Identity Map}
+\begin{frame}
+  \frametitle{Identity Map}
+
+  In-memory map of objects loaded from the database during the current transaction (indexed by their primary key).
+  \newline
+  
+  This solves 2 problems at the same time:
+  \begin{itemize}
+    \item Avoids unnecessary DB calls by caching loaded objects.
+    \item Prevents modification inconsistencies by ensuring that only one object instance exists for each database record.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Identity Map}
+
+  \begin{figure}
+    \includegraphics[height=0.35\textheight]{images/T5/identity-map.png}
+    \caption{Identity Map. Source: \href{https://martinfowler.com/eaaCatalog/identityMap.html}{Martin Fowler's EAA Catalog}}
+  \end{figure}
+
+  \begin{block}{Problem}
+    This works well for read-only data, but what about updates?
+  \end{block}
+ 
+
+\end{frame}
+
+\subsection{Unit of Work}
+\begin{frame}
+  \frametitle{Unit of Work}
+
+  Extension of the Identity Map pattern to also keep track of modifications, creations and deletions.
+  \begin{itemize}
+    \item Instead of accessing the database on each change, the changes are registered in the Unit of Work.
+    \item At the end of the transaction, the Unit of Work \textbf{writes all the changes} to the database in the correct order and using the minimum number of database calls.
+  \end{itemize}
+\end{frame}
+
+\subsection{Data Mapper}
+\begin{frame}
+  \frametitle{Data Mapper}
+
+  A layer of mappers that convert between the in-memory models and the database schema, while keeping them \textbf{fully decoupled}.
+  \newline
+
+  \begin{itemize}
+    \item It is an alternative to the \textit{Row/Table Data Gateway} and \textit{Active Record} patterns.
+    \item More complex, but also more \textbf{flexible} and \textbf{maintainable}.
+  \end{itemize}
+
+  \begin{figure}
+    \includegraphics[height=0.25\textheight]{images/T5/data-mapper.png}
+    \caption{Data Mapper. Source: \href{https://martinfowler.com/eaaCatalog/dataMapper.html}{Martin Fowler's EAA Catalog}}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Data Mapper (ORM) libraries}
+
+  \begin{itemize}
+    \item Java: \textbf{Hibernate}, EclipseLink
+    \item C\#: \textbf{Entity Framework}, Dapper
+    \item Python: \textbf{SQLAlchemy}, Django ORM
+    \item Node.js: \textbf{Prisma}, Drizzle
+  \end{itemize}
+  \href{https://en.wikipedia.org/wiki/List_of_object\%E2\%80\%93relational_mapping_software}{And many more...}
+  \newline
+
+  They provide an abstraction layer that allows us to \textbf{work with the database using our domain model}, without having to write SQL queries or worry about the underlying database schema.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Data Mapper (ORM) libraries}
+
+  \textbf{Advantages:}
+  \begin{itemize}
+    \item Greatly reduces the amount of boilerplate code.
+    \item Most libraries use \textit{reflection} to access the fields.
+    \begin{itemize}
+      \item We are not forced to break encapsulation by adding getters and setters to the domain model.
+    \end{itemize}
+    \item Modern Data Mapper libraries also implement the \textit{Identity Map} and the \textit{Unit of Work} patterns.
+    \begin{itemize}
+      \item We get their performance benefits "for free".
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Data Mapper (ORM) libraries}
+
+  \textbf{Disadvantages:}
+  \begin{itemize}
+    \item Requires adding several annotations to the domain model.
+    \begin{itemize}
+      \item This could be seen as a violation of the \textit{Single Responsibility Principle}.
+    \end{itemize}
+    \item Can have a performance impact if the mapping is complex.
+    \begin{itemize}
+      \item Additional CPU use for the mapping process.
+      \item Autogenerated SQL queries are usually not as efficient as hand-written ones.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Block C - Concurrent Data Access Patterns}
+
+\begin{frame}
+  \frametitle{Problem: Concurrent data access}
+
+  Multiple users or processes may need to access the same data at the same time, which can lead to \textbf{race conditions} if not properly managed.
+  \newline
+
+  \begin{itemize}
+    \item \textbf{Lost updates}: Users \texttt{A} and \texttt{B} read the same data, make changes and write it back. The changes made by \texttt{A} are lost when \texttt{B} writes its changes.
+    \item \textbf{Inconsistent reads}: User \texttt{A} performs 2 reads while \texttt{B} is modifying it. Each read is consistent, but the combination of the two reads is not.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Concurrency control mechanisms}
+
+  Most RDBMSs support \textbf{transactions}, which are a sequence of operations that are executed as a single unit of work. Transactions provide the ACID properties:
+  \begin{itemize}
+    \item \textbf{Atomicity}: Either \textit{all} operations in a transaction are executed, or \textit{none} of them are (rollback).
+    \item \textbf{Consistency}: A transaction brings the database from one valid state to another valid state.
+    \item \textbf{Isolation}: A transaction should "think" it is the only one accessing the database concurrently.
+    \item \textbf{Durability}: Once a transaction is committed, its changes are permanent and will survive failures (like power loss).
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem solved, but at what cost?}
+
+  Enforcing strong consistency doesn't scale well in high-concurrency scenarios. Our job as architects is to choose the right \textbf{isolation level} and \textbf{locking strategy} for our application.
+  \newline
+
+  \begin{itemize}
+    \item \textbf{Read Uncommitted}: Allows \textit{dirty reads}, \textit{non-repeatable reads} and \textit{phantom reads}. Highest concurrency.
+    \item \textbf{Read Committed}: Prevents \textit{dirty reads}, but allows \textit{non-repeatable reads} and \textit{phantom reads}.
+    \item \textbf{Repeatable Read}: Prevents \textit{dirty reads} and \textit{non-repeatable reads}, but allows \textit{phantom reads}.
+    \item \textbf{Serializable}: Prevents all concurrency issues, but has the lowest concurrency.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Pessimistic locking}
+
+  Ensures correctness by \textbf{locking the data} when it is being accessed. Other transactions are blocked until the lock is released.
+  \newline
+
+  \textbf{Advantages:}
+  \begin{itemize}
+    \item Simple to understand and implement.
+    \item Guarantees data consistency.
+  \end{itemize}
+
+  \textbf{Disadvantages:}
+  \begin{itemize}
+    \item Can lead to \textbf{deadlocks} if two or more transactions are waiting for each other to release locks.
+    \item Can \textbf{reduce concurrency} and performance due to the \textbf{overhead} of locking and unlocking.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Optimistic locking}
+
+  Transactions proceed without locking the data, but they \textbf{check for conflicts before committing}. If a conflict is detected, the transaction is rolled back and can be retried.
+  \newline
+
+  \textbf{Advantages:}
+  \begin{itemize}
+    \item Much \textbf{higher concurrency} in \textit{low contention} scenarios.
+    \item No risk of deadlocks.
+  \end{itemize}
+
+  \textbf{Disadvantages:}
+  \begin{itemize}
+    \item More complex to implement, as it requires retry logic.
+    \item Greatly reduced performance in \textit{high contention} scenarios.
+    \item Doesn't prevent \textbf{inconsistent reads}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{When to use each locking strategy?}
+
+  \textbf{Pessimistic locking}:
+  \begin{itemize}
+    \item \textbf{High contention} scenarios (high probability of conflicts).
+    \item When data consistency is critical and cannot be compromised.
+  \end{itemize}
+
+  {\color{white} . }
+
+  \textbf{Optimistic locking}:
+  \begin{itemize}
+    \item \textbf{High concurrency} + \textbf{low contention} scenarios (many requests, not many conflicts).
+    \begin{itemize}
+      \item Most requests are read-only, and write conflicts are rare.
+    \end{itemize}
+    \item When the consequences of an inconsistent read are not severe.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Offline concurrency}
+
+  Offline concurrency control spans multiple API requests and, therefore, DB transactions.
+
+  This is known as a \textbf{business transaction}, in contrast to the \textbf{system transactions} provided by the DBMS.
+  \newline
+
+  \textbf{Example:} Black Friday flash sale.
+  \begin{enumerate}
+    \item 100 users try to buy a product with only 10 items in stock.
+    \item The 10 fastest users can add it to their cart, but they have 15 minutes to complete the purchase.
+    \item During those 15 minutes, the stock is locked.
+    \item Failing to complete the purchase within that time frame will unlock the stock for other users.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Offline concurrency control}
+
+  It's a very complex problem, as the application logic is responsible for maintaining most of the \textit{ACID properties} without help from the DBMS.
+  \newline
+  
+  \textbf{Patterns:}
+  \begin{itemize}
+    \item \textbf{Domain Model}: The model objects keep track of their own state and changes.
+    \item \textbf{Unit of Work}: Commonly used in \textit{system transactions}, but it can also be extended to manage \textit{business transactions} by keeping track of loaded and modified objects across multiple API requests.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Offline concurrency control}
+
+  The same locking strategies still apply, but they are implemented at the application level:
+  \newline
+
+  \textbf{Pessimistic locking}
+  \begin{itemize}
+    \item Good for \textit{high contention} scenarios.
+    \item \textbf{Example:} Black Friday flash sale. Lock the stock when a user adds the product to the cart.
+  \end{itemize}
+
+  \textbf{Optimistic locking}
+  \begin{itemize}
+    \item Good for \textit{high concurrency}, \textit{low contention} scenarios.
+    \item \textbf{Example:} Updating a long form. Always allow editing it, but check for conflicts before saving. If a conflict is detected, show a warning and let the user decide how to proceed.
+  \end{itemize}
+\end{frame}
+
+\end{document}

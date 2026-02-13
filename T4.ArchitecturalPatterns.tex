@@ -77,7 +77,7 @@
 \begin{frame}
   \frametitle{Architecture vs. Design (real world)}
   
-  Buth are very similar, but at \textit{different scales}. This gives them different properties:
+  Both are very similar, but at \textit{different scales}. This gives them different properties:
   \newline
 
   Architecture...
@@ -147,7 +147,7 @@
   Also known as \textit{tiered}, \textit{N-layer} or \textit{N-tier} architecture.
   \newline
 
-  \textbf{The Problem:} How can we decompose a complex problem in such a way that promotes \textit{separation of concerns}?
+  \textbf{The Problem:} How can we decompose a complex problem in a way that promotes \textit{separation of concerns}?
   \newline
 
   \textbf{The Solution:} Organize the system into \textit{layers}:
@@ -301,7 +301,7 @@
   \begin{itemize}
     \item Transaction boundaries are obvious.
     \item It's a good fit for applications with \textbf{simple data} and \textbf{linear workflows} (KISS principle).
-    \item It's the the most natural option in purely \textbf{procedural languages} like C.
+    \item It's the most natural option in purely \textbf{procedural languages} like C.
   \end{itemize}
 \end{frame}
 
@@ -403,9 +403,9 @@
   \begin{enumerate}
     \item Create a "table module" class for each \textbf{database table}/view, instead of for each domain concept.\footnote{\url{https://martinfowler.com/eaaCatalog/tableModule.html}}
     \begin{itemize}
-      \item Table modules are \textit{singletons} (one instance manages all rows in the table), opposite to Domain Model objects.
+      \item Table modules are \textit{singletons} (one instance manages all rows in the table), as opposed to Domain Model objects.
     \end{itemize}
-    \item Implement the domain logic as \textbf{class methods} that operate on the data in that table.
+    \item Implement the domain logic as \textbf{class methods} that operate on the data in the table.
   \end{enumerate} 
 \end{frame}
 
@@ -444,7 +444,7 @@
       \item This makes it hard to test the domain logic in isolation.
       \item Changes to the database schema can require significant changes to the domain logic.
     \end{itemize}
-    \item It's missing inheritance and other OOP features that promote \textbf{code reuse} and \textbf{extensibility}.
+    \item It lacks inheritance and other OOP features that promote \textbf{code reuse} and \textbf{extensibility}.
     \begin{itemize}
       \item For complex domains, this can lead to the same cohesion and maintainability issues as Transaction Script.
     \end{itemize}

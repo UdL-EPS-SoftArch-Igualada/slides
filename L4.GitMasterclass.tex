@@ -1,0 +1,296 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usepackage{theme/theme}
+  \setbeamercovered{transparent}
+}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{minted}
+\usepackage{libs/tikz-uml}
+
+% Uncomment me when you need to insert code
+\usepackage{color}
+\usepackage{listings}
+% End Code
+
+% End Header
+
+% Titlepage
+\newcommand{\maintitle}{L4. Git Masterclass}
+\title{\maintitle}
+\author{Enterprise Software Architectures}
+\institute
+{
+  Bachelor's Degree in Computer Engineering
+}
+\date{Academic year 2025/26}
+% End Titlepage
+
+\AtBeginSection[]{
+  \begin{frame}
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\insertsectionhead
+    \end{beamercolorbox}
+  \end{frame}
+}
+
+% Slides
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{\maintitle}
+  \tableofcontents[subsectionstyle=show]
+\end{frame}
+
+
+\section{Block A - Fundamental Concepts}
+
+\begin{frame}
+  \frametitle{Repository}
+
+  \begin{itemize}
+    \item Data structure that stores all the metadata and content of a Git project.
+    \item \textbf{Stored locally} on your computer (\texttt{.git} directory).
+    \item Can be synchronized with remote repositories (e.g., GitHub).
+    \begin{itemize}
+      \item More on that later!
+    \end{itemize}
+  \end{itemize}
+
+  \begin{block}{Create a repository}
+    \texttt{git init}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Commit}
+
+  A repository is a \textit{directed acyclic graph (DAG)} of commits. 
+  
+  Each commit represents a \textbf{snapshot} of the working directory at a specific point in time.
+  \begin{itemize}
+    \item Contains metadata (author, date, message), a reference to the parent commit(s) and a diff of the changes.
+    \item Commits are \textbf{immutable}; once created, they cannot be changed.
+  \end{itemize}
+
+  \begin{block}{Checkout a commit (modify the working directory)}
+    \texttt{git checkout <commit\_hash>}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Creating commits}
+
+  \begin{columns}
+    \column{0.7\textwidth}
+    Commits can be appended at any point in the graph.
+    \begin{enumerate}
+      \item Checkout the commit you want to use as parent.
+      \item Make changes to the working directory and stage them (\texttt{git add}).
+      \item Create a new commit with the staged changes (\texttt{git commit}).
+    \end{enumerate}
+
+    \column{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/L4/graph-1.pdf}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Branches and Tags}
+
+  \begin{columns}
+    \column{0.7\textwidth}
+    Both are pointers to commits.
+    \begin{itemize}
+      \item \textbf{Branch}: A movable pointer that represents a line of development (e.g., \texttt{main}, \texttt{feature-x}).
+      \item \textbf{Tag}: A fixed pointer that represents a specific commit (e.g., a release version).
+    \end{itemize}
+
+    \begin{block}{Create a branch pointing to current commit}
+      \texttt{git branch my-feature}
+    \end{block}
+
+    \column{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/L4/graph-2.pdf}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Merge commits}
+  \begin{columns}
+    \column{0.7\textwidth}
+    It's the only type of commit that has \textbf{more than one parent}.
+    They are commonly used to merge two branches together.
+    \begin{enumerate}
+      \item Checkout one of the two parent commits.
+      \item Merge another commit into the current one (\texttt{git merge <other\_branch>}).
+    \end{enumerate}
+    \begin{alertblock}{Warning}
+      There can be \textbf{merge conflicts} if the same lines of code were modified in both branches.
+    \end{alertblock}
+    \column{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/L4/graph-3.pdf}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Solving merge conflicts}
+  
+  \includegraphics[width=1\textwidth]{images/L4/merge.png}
+  
+  The traditional conflict markers work well for terminal-based tools, but they \textbf{lack the original file state}, which is crucial for understanding the context of the conflict.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Solving merge conflicts}
+  
+  \includegraphics[width=1\textwidth]{images/L4/merge-3way.png}
+  \begin{columns}[totalwidth=\textwidth]
+    \column{0.33\textwidth}
+    \centering
+    Incoming changes
+    \column{0.33\textwidth}
+    \centering
+    Base version
+    \column{0.33\textwidth}
+    \centering
+    Current changes
+  \end{columns}
+
+  {\color{white} . }
+
+  Most modern IDEs support 3-way merge editors.
+  \begin{itemize}
+    \item \href{https://code.visualstudio.com/docs/sourcecontrol/merge-conflicts\#_open-the-merge-editor}{VSCode documentation}
+    \item \href{https://www.jetbrains.com/help/idea/resolve-conflicts.html}{IntelliJ documentation}
+  \end{itemize}
+  
+\end{frame}
+
+\section{Block B - Working with remotes}
+
+\begin{frame}
+  \frametitle{Remote repositories}
+  \begin{itemize}
+    \item A remote repository is a version of your project that is hosted on the internet or a network.
+    \item It's a full copy of your local repository, including all commits, branches and tags.
+    \item You can think of a remote as an \textbf{additional set of branches} in the commit graph.
+  \end{itemize}
+
+  \begin{block}{Add a remote repository named "\texttt{origin}"}
+    \texttt{git remote add origin <remote\_url>}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Remote repositories}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{itemize}
+      \item \textbf{Download} remote commits and branches: \texttt{git fetch}
+      \item \textbf{Update} local branch to match its remote counterpart: \texttt{git pull}
+      \item Upload local commits and branches: \texttt{git push}
+    \end{itemize}
+    Fetching manually is usually not needed, as \texttt{git pull} does it for you.
+    \column{0.4\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{images/L4/graph-4.pdf}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Multiple remotes}
+  \begin{itemize}
+    \item A repository can have multiple remotes, each with a different name and URL.
+    \item This is useful for \textbf{forks}, where you have a remote for your own copy of the repository and another remote for the original ("upstream") repository.
+  \end{itemize}
+
+  Many Git clients automatically set up the \texttt{origin} and \texttt{upstream} remotes when you clone a forked repository.
+\end{frame}
+
+\section{Block C - Practical example}
+
+\begin{frame}
+  \frametitle{Contributing to an upstream repository}
+
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{itemize}
+      \only<1> {
+        \item In your fork, create a new branch for your changes (\texttt{some-feature}), based on the latest commit of the \texttt{main} branch in the upstream repository.
+        \item Push your commits to your fork (\texttt{origin/some-feature}).
+      }
+      \only<2> {
+        \item The \texttt{main} branch in the upstream repository is constantly advancing due to the work of other contributors.
+        \item Even if you are quick, your PR may sit waiting for review.
+      }
+      \only<3> {
+        \item \textbf{Option 1:} If you are lucky, nobody has modified the same lines of code as you, so there are no merge conflicts.
+        \item When your PR is merged, the commit graph will look like this:
+        \item You can delete your \texttt{some-feature} branch, the commits are now part of the \texttt{main} branch in the upstream repository.
+      }
+      \only<4> {
+        \item \textbf{Option 2:} If there are merge conflicts, you must merge \texttt{upstream/main} into your \texttt{some-feature} branch and manually resolve the conflicts.
+        \item Push the changes to your fork and try again to merge the PR.
+        \item You \textbf{do not} need to close and re-open the PR.
+      }
+    \end{itemize}
+    \column{0.5\textwidth}
+    \centering
+    \only<1> {
+      \includegraphics[width=1\textwidth]{images/L4/example-1.pdf}
+    }
+    \only<2> {
+      \includegraphics[width=1\textwidth]{images/L4/example-2.pdf}
+    }
+    \only<3> {
+      \includegraphics[width=1\textwidth]{images/L4/example-3.pdf}
+    }
+    \only<4> {
+      \includegraphics[width=1\textwidth]{images/L4/example-4.pdf}
+    }
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Annex: Interesting Git features that you should know}
+
+  \begin{itemize}
+    \item \textbf{Stash}: Store uncommitted changes temporarily.
+    \item \textbf{Cherry-pick}: "Copy" a specific commit without merging the entire branch.
+    \begin{itemize}
+      \item This just creates a new commit with the same changes (diff) as the original one, but with a different parent.
+    \end{itemize}
+    \item \textbf{Rebase}: An alternative to merging.
+    \begin{itemize}
+      \item It \textit{replays} (cherry-picks) all commits on top of another branch.
+      \item This has the advantage of creating a \textit{linear commit history}.
+    \end{itemize}
+    \item \textbf{Squash}: Combine multiple commits into a single one.
+    \item \textbf{Bisect}: Find the commit that introduced a bug using binary search.
+    \item \textbf{Amend}: Modify the most recent commit.
+  \end{itemize}
+
+\end{frame}
+
+\end{document}

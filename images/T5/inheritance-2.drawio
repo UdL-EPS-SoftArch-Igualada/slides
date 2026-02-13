@@ -1,0 +1,115 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.8">
+  <diagram name="Page-1" id="DSbNqGCPRada2gL-x2dd">
+    <mxGraphModel dx="1720" dy="979" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-216" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«abstract»&lt;br&gt;&lt;i&gt;Vehicle&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="94" x="140" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-217" parent="PCL1DtMMxWJHtizhbGJb-216" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="color" vertex="1">
+          <mxGeometry height="20" width="94" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-218" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Car&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="100" x="220" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-219" parent="PCL1DtMMxWJHtizhbGJb-218" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="doors" vertex="1">
+          <mxGeometry height="20" width="100" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-220" parent="PCL1DtMMxWJHtizhbGJb-218" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="hasSpareTire" vertex="1">
+          <mxGeometry height="20" width="100" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-221" edge="1" parent="1" source="PCL1DtMMxWJHtizhbGJb-222" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1;endSize=9;" target="PCL1DtMMxWJHtizhbGJb-216">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-222" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Truck&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="104" x="50" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-223" parent="PCL1DtMMxWJHtizhbGJb-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="axleCount" vertex="1">
+          <mxGeometry height="20" width="104" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-224" parent="PCL1DtMMxWJHtizhbGJb-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="bedLength" vertex="1">
+          <mxGeometry height="20" width="104" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-225" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;ElectricCar&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="220" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-226" parent="PCL1DtMMxWJHtizhbGJb-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="batteryType" vertex="1">
+          <mxGeometry height="20" width="100" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-227" parent="PCL1DtMMxWJHtizhbGJb-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="batteryCapacity" vertex="1">
+          <mxGeometry height="20" width="100" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-228" parent="PCL1DtMMxWJHtizhbGJb-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="chargePortType" vertex="1">
+          <mxGeometry height="20" width="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-229" edge="1" parent="1" source="PCL1DtMMxWJHtizhbGJb-218" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1;endSize=9;" target="PCL1DtMMxWJHtizhbGJb-216">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="210" as="sourcePoint" />
+            <mxPoint x="275" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-230" edge="1" parent="1" source="PCL1DtMMxWJHtizhbGJb-225" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1;endSize=9;" target="PCL1DtMMxWJHtizhbGJb-218">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="493" y="210" as="sourcePoint" />
+            <mxPoint x="410" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-246" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="truck" vertex="1">
+          <mxGeometry height="110" width="100" x="380" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-247" parent="PCL1DtMMxWJHtizhbGJb-246" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id" vertex="1">
+          <mxGeometry height="20" width="100" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-248" parent="PCL1DtMMxWJHtizhbGJb-246" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=1" value="color" vertex="1">
+          <mxGeometry height="20" width="100" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-249" parent="PCL1DtMMxWJHtizhbGJb-246" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="axleCount" vertex="1">
+          <mxGeometry height="20" width="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-250" parent="PCL1DtMMxWJHtizhbGJb-246" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="bedLength" vertex="1">
+          <mxGeometry height="20" width="100" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-251" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="car" vertex="1">
+          <mxGeometry height="110" width="100" x="380" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-252" parent="PCL1DtMMxWJHtizhbGJb-251" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id" vertex="1">
+          <mxGeometry height="20" width="100" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-253" parent="PCL1DtMMxWJHtizhbGJb-251" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=1" value="color" vertex="1">
+          <mxGeometry height="20" width="100" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-254" parent="PCL1DtMMxWJHtizhbGJb-251" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=1" value="doors" vertex="1">
+          <mxGeometry height="20" width="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-255" parent="PCL1DtMMxWJHtizhbGJb-251" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=1" value="hasSpareTire" vertex="1">
+          <mxGeometry height="20" width="100" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-256" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="electric_car" vertex="1">
+          <mxGeometry height="170" width="100" x="500" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-257" parent="PCL1DtMMxWJHtizhbGJb-256" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id" vertex="1">
+          <mxGeometry height="20" width="100" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-258" parent="PCL1DtMMxWJHtizhbGJb-256" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=1" value="color" vertex="1">
+          <mxGeometry height="20" width="100" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-259" parent="PCL1DtMMxWJHtizhbGJb-256" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=1" value="doors" vertex="1">
+          <mxGeometry height="20" width="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-260" parent="PCL1DtMMxWJHtizhbGJb-256" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=1" value="hasSpareTire" vertex="1">
+          <mxGeometry height="20" width="100" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-261" parent="PCL1DtMMxWJHtizhbGJb-256" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="batteryType" vertex="1">
+          <mxGeometry height="20" width="100" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-262" parent="PCL1DtMMxWJHtizhbGJb-256" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="batteryCapacity" vertex="1">
+          <mxGeometry height="20" width="100" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="PCL1DtMMxWJHtizhbGJb-263" parent="PCL1DtMMxWJHtizhbGJb-256" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="chargePortType" vertex="1">
+          <mxGeometry height="20" width="100" y="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
