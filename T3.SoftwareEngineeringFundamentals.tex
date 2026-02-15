@@ -209,7 +209,7 @@
   Instead of worrying about lines of code, focus on having:
   \begin{itemize}
     \item Extremely readable methods. They should read as close to English as possible. Their implementation must be \textbf{obvious}.
-    \item Hard limit: at most \textbf{2 levels of nesting} per method (for+for, for+if, while+if, etc.).
+    \item Hard limit: at most \textbf{2 levels of nesting} per method (for+for, for+if, while+try, etc.).
   \end{itemize}
 
   \vfill
@@ -365,44 +365,24 @@ myHuman.getMuscleSystem().getArms()[0].getHand()
   \begin{exampleblock}{Corollary: \textbf{Liskov Substitution Principle (LSP)}}
     A superclass must be replaceable by any of its subclasses without ever breaking.
   \end{exampleblock}
-  \begin{columns}
-    \column{.45\linewidth}
-      In other words, all subclasses must have \textbf{less restrictive preconditions} and \textbf{more restrictive postconditions} than their superclass.
-    \column{.5\linewidth}
-      \begin{figure}
-        \includegraphics[width=1\textwidth]{images/T3/liskov.pdf}
-      \end{figure}
-  \end{columns}
-  That's the \textbf{L} in the SO\textbf{L}ID principles. 
+  In other words, all subclasses must have \textbf{less restrictive preconditions} and \textbf{more restrictive postconditions} than their superclass.
+  \newline
 
+  That's the \textbf{L} in the SO\textbf{L}ID principles. 
 \end{frame}
 
 \begin{frame}
-  \frametitle{However... abstractions sometimes \textit{are} leaky}
-  
+  \frametitle{Liskov Substitution Principle: examples}
   \begin{columns}
-    \column{.5\linewidth}
-    The entire history of software engineering is one of rising levels of abstraction.
-
-    {\raggedleft
-    \footnotesize
-    - Grady Booch, co-creator of UML
-    \newline
-    \newline
-    \par}
-
-    All non-trivial abstractions, to some degree, are leaky.
-
-    {\raggedleft
-    \footnotesize
-    - Joel Spolsky, co-creator of Trello \& Stack Overflow
-    \par}
-      
-    \column{.5\linewidth}
-      \begin{figure}
-        \includegraphics[width=1\textwidth]{images/T3/abstractions.png}
-      \end{figure}
+    \column{.6\textwidth}
+      \includegraphics[width=1\textwidth]{images/T3/liskov-2.pdf}
+    \column{.5\textwidth}
+      \includegraphics[width=1\textwidth]{images/T3/liskov.pdf}
   \end{columns}
+
+  {\color{white} . }
+
+  The possibility of \textit{throwing an exception} is a postcondition. If the users of the superclass are not expecting it, then the subclass is not substitutable.
 \end{frame}
 
 \begin{frame}[fragile]
