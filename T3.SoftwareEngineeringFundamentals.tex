@@ -149,7 +149,9 @@
   \vfill
   Don't believe me? Time for an experiment.
 
-  Prepare a sheet of paper. You have \textbf{5 seconds} to memorize and then reproduce the following image.
+  Prepare a sheet of paper. You have \textbf{5 seconds} to memorize the following image.
+  
+  After that, you will have to reproduce it from memory.
 \end{frame}
 
 \begin{frame}
@@ -213,7 +215,7 @@
   \vfill
   \begin{minted}{java}
 public Session authenticateSessionUser(String token) {
-  User user = getSesionUser(token);
+  User user = getUserBySessionToken(token);
   if (!user.isAuthenticated() || user.isBanned()) {
     throw new UnauthenticatedUserException();
   }
