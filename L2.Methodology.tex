@@ -402,8 +402,8 @@
   \frametitle{RESTful API design: Additional considerations}
 
   \begin{itemize}
-    \item The request body is always a \textbf{JSON object}, and can only be used in \texttt{POST}, \texttt{PUT}, and \texttt{PATCH} (never in \texttt{GET} or \texttt{DELETE}).
-    \item The response body is always a \textbf{JSON object or array}.
+    \item The request body is a \textbf{JSON object}\footnote{The REST specification doesn't require the body to be JSON, but it's used almost universally in practice.}, and can only be used in \texttt{POST}, \texttt{PUT}, and \texttt{PATCH} (never in \texttt{GET} or \texttt{DELETE}).
+    \item The response body is a \textbf{JSON object or array}.
     \item The HTTP response code can be either:
       \begin{itemize}
         \item \textbf{\color{green!60!black}\texttt{201 CREATED}} for \texttt{POST}, \textbf{\color{green!60!black}\texttt{200 OK}} for all other verbs.
