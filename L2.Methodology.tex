@@ -421,8 +421,10 @@
     What if I need to add functionality that doesn't map well to any resource URI? For example: "Resend the user's verification email"
   \end{block}
 
-  In this case, we create a new URI corresponding to a \textbf{verb} (action) instead of a \textbf{noun} (resource).\newline
-  \texttt{{\color{orange!80!black}POST} /users/mike/\textbf{resendVerificationMail}}\newline
+  In this case, we create a new URI corresponding to a \textbf{verb} (action) instead of a \textbf{noun} (resource).
+  
+  \texttt{{\color{orange!80!black}POST} /users/mike/\textbf{resendVerificationMail}}
+  \newline
 
   \begin{itemize}
     \item Use \texttt{{\color{orange!80!black}POST}} for non-idempotent actions (such as sending a notification) and \texttt{{\color{blue}PUT}} for idempotent actions (such as following a user)\footnote{\url{https://en.wikipedia.org/wiki/Idempotence}}.
