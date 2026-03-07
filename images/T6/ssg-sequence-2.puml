@@ -1,0 +1,13 @@
+@startuml
+skinparam backgroundColor white
+skinparam sequenceArrowThickness 1.5
+
+actor User
+entity Browser
+participant "CDN" as CDN
+
+User -> Browser ++ : navigate to page
+Browser -> CDN : GET /page.html
+CDN --> Browser : static HTML (no server processing)
+Browser --> User -- : display page
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+skinparam backgroundColor white
+skinparam sequenceArrowThickness 1.5
+
+actor User
+entity Browser
+participant Server
+database Database
+
+User -> Browser ++ : navigate to page
+Browser -> Server : GET /page
+Server -> Database : query data
+Database --> Server : data
+Server -> Server : render HTML
+Server --> Browser : full HTML page
+Browser --> User -- : display page
+@enduml

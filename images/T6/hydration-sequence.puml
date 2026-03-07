@@ -1,0 +1,22 @@
+@startuml
+skinparam backgroundColor white
+skinparam sequenceArrowThickness 1.5
+
+actor User
+entity Browser
+participant Server
+database Database
+
+
+User -> Browser ++ : navigate to page
+Browser -> Server : GET /page
+Server -> Database : query data
+Database --> Server : data
+Server -> Server : render HTML + serialize state
+Server --> Browser : full HTML + JS bundle + serialized state
+Browser --> User : display pre-rendered HTML\n(page is visible immediately)
+
+Browser -> Browser : load and execute JavaScript
+Browser -> Browser : hydrate: attach event listeners\nand restore serialized state
+note right of Browser : page is now fully interactive
+@enduml

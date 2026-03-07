@@ -1,0 +1,16 @@
+@startuml
+skinparam backgroundColor white
+skinparam sequenceArrowThickness 1.5
+
+actor Developer
+participant "Build Tool" as Build
+database "Data Source" as Data
+participant "Server / CDN" as CDN
+
+Developer -> Build ++ : trigger build
+Build -> Data : fetch content / data
+Data --> Build : data
+Build -> Build : generate static HTML files
+Build -> CDN : deploy static files
+Build --> Developer --
+@enduml

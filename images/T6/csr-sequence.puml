@@ -1,0 +1,24 @@
+@startuml
+skinparam backgroundColor white
+skinparam sequenceArrowThickness 1.5
+
+actor User
+entity Browser
+participant CDN
+participant "API Server" as API
+database Database
+
+
+User -> Browser ++ : navigate to page
+Browser -> CDN : GET /page
+CDN --> Browser : empty HTML shell + JS bundle
+Browser -> Browser : parse and execute JavaScript
+Browser --> User : display loading state (optional)
+
+Browser -> API ++ : fetch data (JSON)
+API -> Database : query data
+Database --> API : data
+API --> Browser -- : JSON response
+Browser -> Browser : update UI with JavaScript
+Browser --> User -- : display fully rendered page
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+
+actor "Client" as Client
+participant "Web Server" as WebServer
+participant "FooController" as Controller
+database "DB or external service" as DB
+entity "Foo (Model)" as Model
+participant "FooView" as View
+
+
+Client -> WebServer ++ : HTTP request
+WebServer -> WebServer : route to controller
+WebServer -> Controller ++ : handle http request
+Controller -> DB ++ : get data
+DB --> Controller --
+Controller -> Model ** : create with domain data
+Controller -> Model ++ : carry out domain logic
+Model --> Controller --
+Controller -> Controller : choose view
+WebServer <- Controller -- : forward to view
+WebServer -> View ++ : render view
+View -> Model ++ : get data
+Model --> View --
+View --> WebServer : generate rendered HTML
+WebServer --> Client : http response
+
+@enduml
