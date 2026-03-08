@@ -62,7 +62,7 @@
 
   \begin{columns}
     \column{0.6\textwidth}
-    Architectural pattern for \textbf{separating concerns} in user interfaces (Web-based or otherwise).
+    Architectural pattern for \textbf{separating concerns} in user interfaces (web-based or otherwise).
     \newline
 
     Created in the 1970s at Xerox PARC for the Smalltalk programming language.
@@ -85,7 +85,7 @@
     \begin{itemize}
       \item \textbf{Model}: Encapsulates business logic and data. Unaware of the UI.
       \item \textbf{View}: Renders the UI using data from the Model. Unaware of business logic.
-      \item \textbf{Controller}: Handles user input, coordinates the Model and View.
+      \item \textbf{Controller}: Handles user input and coordinates the Model and View.
     \end{itemize}
 
     \column{0.45\textwidth}
@@ -128,9 +128,9 @@
   Several variants of MVC have been proposed to address specific design trade-offs:
 
   \begin{itemize}
-    \item \textbf{Model-View-Adapter (MVA)}: The View does not know of the model's existence. The Adapter acts as a translation layer, adapting data to the View's needs.
+    \item \textbf{Model-View-Adapter (MVA)}: The View does not know of the Model's existence. The Adapter acts as a translation layer, adapting data to the View's needs.
     \item \textbf{Model-View-Presenter (MVP)}: Similar to MVA, but most of the View's logic is delegated to the Presenter.
-    \item \textbf{Model-View-ViewModel (MVVM)}\footnote{The MVVM pattern has inspired several modern frontend frameworks like Angular and React.}: The ViewModel exposes observable state that the View binds to declaratively. Also known as \textit{Presentation Model}.
+    \item \textbf{Model-View-ViewModel (MVVM)}\footnote{The MVVM pattern has inspired several modern frontend frameworks, such as Angular and React.}: The ViewModel exposes observable state that the View binds to declaratively. Also known as \textit{Presentation Model}.
   \end{itemize}
 
 \end{frame}
@@ -144,8 +144,8 @@
   Two classical patterns exist for this:
 
   \begin{itemize}
-    \item \textbf{Template View}: An almost-HTML page structure that mixes static markup with
-      executable code snippets for dynamic content.
+    \item \textbf{Template View}: An almost-HTML page structure that mixes \textit{static markup} with
+      \textit{executable code snippets} for dynamic content.
     \item \textbf{Transform View}: A function or component that receives the Model as input
       and \textit{transforms} it into HTML output.
   \end{itemize}
@@ -234,7 +234,7 @@ function renderUserProfile(user) {
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Transform View | Javascript + JSX example}
+  \frametitle{Transform View | JavaScript + JSX example}
 
   \begin{minted}[fontsize=\small]{react}
 function UserProfile({ user }) {
@@ -389,9 +389,9 @@ function UserProfile({ user }) {
 
   \textbf{Advantages:}
   \begin{itemize}
-    \item Fast \textit{Time to First Paint} (SSR benefit).
+    \item Fast \textit{Time to First Contentful Paint} (SSR benefit).
+    \item Good SEO (SSR benefit).
     \item Full interactivity after hydration (CSR benefit).
-    \item Good SEO.
   \end{itemize}
   \textbf{Disadvantages:}
   \begin{itemize}
@@ -418,7 +418,7 @@ function UserProfile({ user }) {
     \hline
     Dynamic data   & \colBad{No}       & \colGood{Yes}     & \colGood{Yes}     & \colGood{Yes}   \\
     First paint    & \colGood{Fast}    & \colMid{Medium}   & \colBad{Slow}     & \colMid{Medium} \\
-    Interactivity  & \colBad{Low}      & \colBad{Low}      & \colGood{High}    & \colGood{High}  \\
+    Interactivity  & \colBad{Low}      & \colMid{Medium}   & \colGood{High}    & \colGood{High}  \\
     SEO            & \colGood{Great}   & \colGood{Good}    & \colBad{Poor}     & \colGood{Good}  \\
     Server cost    & \colGood{Minimal} & \colBad{High}     & \colGood{Low}     & \colMid{Medium} \\
     Complexity     & \colGood{Low}     & \colMid{Medium}   & \colMid{Medium}   & \colBad{High}   \\
