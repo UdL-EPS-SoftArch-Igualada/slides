@@ -1,0 +1,13 @@
+Block B - Distribution and Communication Strategies
+- Monolith vs. Microservices
+  - Monolith: Goal is to minimize number of remote calls.
+    - This doesn't mean it's tightly coupled. It can be modularized and have clear interfaces, but they are logical boundaries, not physical ones.
+  - Microservices: Goal is to break the system into smaller, independent services (with their own database), so they can be developed, deployed, and scaled independently.
+  - Serverless functions
+  - Which one to use? Recommendation: Start with a monolith, and progressively break it into microservices as needed.
+- Microservice communication patterns, event-driven architecture, pub-sub, asynchronous message queues
+- Failure handling
+  - Circuit breakers + timeouts + retries with backoff
+  - Rate limiting, backpressure, and throttling
+    - Useful for protecting services against abuse (e.g., DDoS attacks) and for recovering from failures (don't overload a failing service).
+  - Idempotency (especially important for retries)

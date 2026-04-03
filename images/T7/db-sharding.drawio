@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.4.0">
+  <diagram name="Page-1" id="DSbNqGCPRada2gL-x2dd">
+    <mxGraphModel dx="560" dy="336" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-2" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" value="" vertex="1">
+          <mxGeometry height="54" width="42.599999999999994" x="145" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-31" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=2;" value="Shard A&lt;br&gt;(Read+Write)" vertex="1">
+          <mxGeometry height="70" width="90" x="270" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-46" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Application instances" vertex="1">
+          <mxGeometry height="40" width="60" x="75" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-49" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=2;" value="Shard B&lt;br&gt;(Read+Write)" vertex="1">
+          <mxGeometry height="70" width="90" x="270" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-51" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="200" y="260" as="sourcePoint" />
+            <mxPoint x="260" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-52" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font face=&quot;Courier New&quot;&gt;userId&lt;/font&gt; is even" vertex="1">
+          <mxGeometry height="30" width="100" x="140" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-53" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="200" y="290" as="sourcePoint" />
+            <mxPoint x="260" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-56" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font face=&quot;Courier New&quot;&gt;userId&lt;/font&gt; is odd" vertex="1">
+          <mxGeometry height="30" width="100" x="140" y="310" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

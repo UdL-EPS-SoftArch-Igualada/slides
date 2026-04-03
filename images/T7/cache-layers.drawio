@@ -1,0 +1,104 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.4.0">
+  <diagram name="Page-1" id="DSbNqGCPRada2gL-x2dd">
+    <mxGraphModel dx="682" dy="409" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-46" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Application instance" vertex="1">
+          <mxGeometry height="40" width="115" x="142.6" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-57" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="80" width="200" x="110" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-2" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" value="" vertex="1">
+          <mxGeometry height="54" width="42.599999999999994" x="100" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-61" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" target="K8MEn2j_-bQMlvKFRgze-62" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="80" y="277" as="sourcePoint" />
+            <mxPoint x="110" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-64" edge="1" parent="1" source="K8MEn2j_-bQMlvKFRgze-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="K8MEn2j_-bQMlvKFRgze-63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-62" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Business logic" vertex="1">
+          <mxGeometry height="34" width="60" x="130" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-84" edge="1" parent="1" source="K8MEn2j_-bQMlvKFRgze-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="K8MEn2j_-bQMlvKFRgze-66">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="277" />
+              <mxPoint x="340" y="277" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-63" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="L1 Cache&lt;div&gt;(HashMap)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="34" width="80" x="220" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-65" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="check L1" vertex="1">
+          <mxGeometry height="30" width="60" x="179" y="236" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-66" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="L2 Cache&lt;div&gt;(Redis)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="220" width="85" x="385" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-67" parent="1" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Cache_Redis_Product.svg;" value="" vertex="1">
+          <mxGeometry height="30" width="35.71" x="380" y="212" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-76" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Application instance" vertex="1">
+          <mxGeometry height="40" width="115" x="142.6" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-77" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="80" width="200" x="110" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-78" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" value="" vertex="1">
+          <mxGeometry height="54" width="42.599999999999994" x="100" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-79" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" target="K8MEn2j_-bQMlvKFRgze-81" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="80" y="417" as="sourcePoint" />
+            <mxPoint x="110" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-80" edge="1" parent="1" source="K8MEn2j_-bQMlvKFRgze-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="K8MEn2j_-bQMlvKFRgze-82">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-81" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Business logic" vertex="1">
+          <mxGeometry height="34" width="60" x="130" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-82" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="L1 Cache&lt;div&gt;(HashMap)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="34" width="80" x="220" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-85" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="L1 miss,&lt;div&gt;check L2&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="320" y="289" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-86" edge="1" parent="1" source="K8MEn2j_-bQMlvKFRgze-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="K8MEn2j_-bQMlvKFRgze-66">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="420" />
+              <mxPoint x="330" y="420" />
+            </Array>
+            <mxPoint x="370" y="300" as="sourcePoint" />
+            <mxPoint x="455" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-88" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="DB" vertex="1">
+          <mxGeometry height="80" width="60" x="560" y="289" as="geometry" />
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-89" edge="1" parent="1" source="K8MEn2j_-bQMlvKFRgze-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="K8MEn2j_-bQMlvKFRgze-88">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="330" />
+              <mxPoint x="530" y="330" />
+            </Array>
+            <mxPoint x="410" y="280" as="sourcePoint" />
+            <mxPoint x="495" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K8MEn2j_-bQMlvKFRgze-90" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="L2 miss,&lt;div&gt;query DB&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="484" y="294" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
