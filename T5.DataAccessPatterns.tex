@@ -256,9 +256,10 @@
   Combination of the \textit{Row Data Gateway} and the \textit{domain object} in a single class. It includes both the \textbf{data access} code and the \textbf{business logic} code.
   \newline
 
-  Advantage:
+  Advantages:
   \begin{itemize}
     \item If the domain model is identical to the database schema, it can reduce the amount of boilerplate code (\textit{KISS} principle).
+    \item Can be assisted by code generation libraries (popular in \textit{Ruby on Rails} and \textit{Laravel}).
   \end{itemize}
 
 \end{frame}
@@ -275,7 +276,6 @@
   \begin{itemize}
     \item Clear violation of the \textit{Single Responsibility Principle}.
     \item Not suitable for complex domain models or complex database schemas, as it can lead to very large, unmaintainable classes.
-    \item Also low-level, it requires manual handling of DB operations.
   \end{itemize}
 
 \end{frame}
