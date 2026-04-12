@@ -399,9 +399,27 @@
   \newline
 
   \begin{itemize}
-    \item \textbf{Lost updates}: Users \texttt{A} and \texttt{B} read the same data, make changes and write it back. The changes made by \texttt{A} are lost when \texttt{B} writes its changes.
-    \item \textbf{Inconsistent reads}: User \texttt{A} performs 2 reads while \texttt{B} is modifying it. Each read is consistent, but the combination of the two reads is not.
+    \item Lost updates
+    \item Inconsistent reads
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \textbf{Lost updates}: Users \texttt{A} and \texttt{B} read the same data, make changes and write it back. The changes made by \texttt{A} are lost when \texttt{B} writes its changes.
+
+  \begin{figure}
+    \includegraphics[width=0.6\textwidth]{images/T5/lost-update.pdf}
+    \caption{Two users increment a counter at the same time, but only one of the increments is saved.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \textbf{Inconsistent reads}: User \texttt{A} performs 2 reads while \texttt{B} is modifying it. Each read is consistent, but the combination of the two reads is not.
+
+  \begin{figure}
+    \includegraphics[width=0.6\textwidth]{images/T5/inconsistent-read.pdf}
+    \caption{A user reads a value twice in the same operation and gets two different results.}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -437,11 +455,20 @@
   Ensures correctness by \textbf{locking the data} when it is being accessed. Other transactions are blocked until the lock is released.
   \newline
 
+  \begin{figure}
+    \includegraphics[width=0.7\textwidth]{images/T5/pessimistic-locking.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Pessimistic locking}
+
   \textbf{Advantages:}
   \begin{itemize}
     \item Simple to understand and implement.
     \item Guarantees data consistency.
   \end{itemize}
+  {\color{white} . }
 
   \textbf{Disadvantages:}
   \begin{itemize}
@@ -456,11 +483,28 @@
   Transactions proceed without locking the data, but they \textbf{check for conflicts before committing}. If a conflict is detected, the transaction is rolled back and can be retried.
   \newline
 
+  \only<1>{
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{images/T5/optimistic-locking-1.pdf}
+    \end{figure}
+  }
+  \only<2>{
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{images/T5/optimistic-locking-2.pdf}
+    \end{figure}
+  }
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Optimistic locking}
+
   \textbf{Advantages:}
   \begin{itemize}
     \item Much \textbf{higher concurrency} in \textit{low contention} scenarios.
     \item No risk of deadlocks.
   \end{itemize}
+  {\color{white} . }
 
   \textbf{Disadvantages:}
   \begin{itemize}
@@ -507,6 +551,15 @@
     \item During those 15 minutes, the stock is locked.
     \item Failing to complete the purchase within that time frame will unlock the stock for other users.
   \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Offline concurrency | Example: Black Friday flash sale}
+
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{images/T5/offline-transaction-reserved-stock.png}
+    \caption{Reserved stock timer during a flash sale. Source: \href{https://creativethemes.com/blocksy/docs/woocommerce/cart-reserved-timer/}{Blocksy documentation}}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
