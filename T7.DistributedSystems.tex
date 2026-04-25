@@ -291,6 +291,35 @@
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{Which one should I use?}
+
+  \begin{columns}
+    \column{0.33\textwidth}
+    \centering
+    \textbf{Low overall load}
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{images/T7/db-single-node.pdf}
+    \end{figure}
+    Single node (use Vertical scaling)
+    \column{0.33\textwidth}
+    \centering
+    \textbf{Read-heavy load}
+    \begin{figure}
+      \includegraphics[width=1\textwidth]{images/T7/db-replication.pdf}
+    \end{figure}
+    Just Replication
+    \column{0.33\textwidth}
+    \centering
+    \textbf{Very high read+write load}
+    \begin{figure}
+      \includegraphics[width=0.75\textwidth]{images/T7/db-sharding-replication.pdf}
+    \end{figure}
+    Sharding (scalability) + Replication (resilience)
+  \end{columns}
+
+\end{frame}
+
 \subsection{Caching}
 
 \begin{frame}

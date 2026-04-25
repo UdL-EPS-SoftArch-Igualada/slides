@@ -1,0 +1,80 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36">
+  <diagram name="Page-1" id="DSbNqGCPRada2gL-x2dd">
+    <mxGraphModel dx="1415" dy="810" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-1" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" value="" vertex="1">
+          <mxGeometry height="54" width="42.599999999999994" x="650" y="496" as="geometry" />
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Application instances" vertex="1">
+          <mxGeometry height="40" width="60" x="580" y="506" as="geometry" />
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font face=&quot;Courier New&quot;&gt;userId&lt;/font&gt; is even" vertex="1">
+          <mxGeometry height="30" width="100" x="630" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font face=&quot;Courier New&quot;&gt;userId&lt;/font&gt; is odd" vertex="1">
+          <mxGeometry height="30" width="100" x="630" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-9" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=2;fillColor=#FFCCCC;" value="Shard A&lt;br&gt;(Read+Write)" vertex="1">
+          <mxGeometry height="70" width="90" x="775" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-10" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=2;fillColor=#CCFFE6;" value="Replicas&lt;br&gt;(Read only)" vertex="1">
+          <mxGeometry height="70" width="90" x="775" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-11" edge="1" parent="1" source="EvcElgkQOYrS3Uof9G4g-9" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#CC0000;dashed=1;" target="EvcElgkQOYrS3Uof9G4g-10" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="785" y="440" as="sourcePoint" />
+            <mxPoint x="875" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-13" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#CC0000;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="420" />
+            </Array>
+            <mxPoint x="689" y="490" as="sourcePoint" />
+            <mxPoint x="769" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-14" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#006633;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="460" />
+            </Array>
+            <mxPoint x="699" y="500" as="sourcePoint" />
+            <mxPoint x="770" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-15" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=2;fillColor=#FFCCCC;" value="Shard B&lt;br&gt;(Read+Write)" vertex="1">
+          <mxGeometry height="70" width="90" x="775" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-16" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=2;fillColor=#CCFFE6;" value="Replicas&lt;br&gt;(Read only)" vertex="1">
+          <mxGeometry height="70" width="90" x="775" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-17" edge="1" parent="1" source="EvcElgkQOYrS3Uof9G4g-15" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#CC0000;dashed=1;" target="EvcElgkQOYrS3Uof9G4g-16" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="785" y="660" as="sourcePoint" />
+            <mxPoint x="875" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-19" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#CC0000;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="590" />
+            </Array>
+            <mxPoint x="700" y="550" as="sourcePoint" />
+            <mxPoint x="760" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EvcElgkQOYrS3Uof9G4g-20" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#006633;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points" />
+            <mxPoint x="690" y="560" as="sourcePoint" />
+            <mxPoint x="770" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
